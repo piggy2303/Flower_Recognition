@@ -1,0 +1,10 @@
+build/
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+*.dvi

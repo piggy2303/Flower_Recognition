@@ -1,0 +1,364 @@
+\documentclass[12pt]{report}
+\usepackage[fontsize=13pt]{scrextend}
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[left=3cm,right=2cm,top=2.5cm,bottom=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{chngcntr}
+\usepackage{nameref}
+%\usepackage[font=bf]{caption}
+%\counterwithin{figure}{chapter}
+
+\renewcommand\labelitemi{--}
+
+\setlength{\parskip}{6pt}
+
+\usetikzlibrary{calc}
+\setlength{\parindent}{10mm}
+\renewcommand{\baselinestretch}{1.3}
+\graphicspath{{images/}}
+
+%%% The following lines add Chapter or Appendix in front of the number
+\titlecontents{chapter}%
+[0pt]%
+{\vspace{1ex}}%
+{\bfseries Chương \thecontentslabel\quad}%
+{\bfseries}%
+{\bfseries\hfill\contentspage}
+%%% Initially, for the main part of the document, set the label to "Chapter"
+\let\chapappname\chaptername
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+% setup code area as listings
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\renewcommand{\lstlistingname}{Mã nguồn}
+
+\newenvironment{thuattoan}[1][h]
+  {\renewcommand{\algorithmcfname}{Thuật toán}
+   \begin{algorithm}[#1]
+  }{\end{algorithm}}
+
+% hyper setup
+\hypersetup{
+	bookmarks=true,
+	pdftitle={Kết hợp bất biến vòng lặp và kỹ thuật thực thi tượng trưng trong kiểm chứng chương trình C/C++},
+	pdfauthor={Nguyễn Thị Vân Anh}, % author
+	pdfsubject={TeX and LaTeX},
+	pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
+	colorlinks=false,       % false: boxed links; true: colored links
+	linkcolor=black,       % color of internal links
+	citecolor=black,       % color of links to bibliography
+	filecolor=black,        % color of file links
+	urlcolor=black,        % color of external links
+	linktoc=page            % only page is linked
+}
+
+\begin{document}
+\begin{titlepage}
+	\center
+	\begin{tikzpicture}[overlay,remember picture]
+		\draw [line width=3pt,rounded corners=0pt,]
+		($ (current page.north west) + (25mm,-25mm) $)
+		rectangle
+		($ (current page.south east) + (-15mm,25mm) $);
+		\draw [line width=1pt,rounded corners=0pt]
+		($ (current page.north west) + (26.5mm,-26.5mm) $)
+		rectangle
+		($ (current page.south east) + (-16.5mm,26.5mm) $);
+	\end{tikzpicture}
+	
+	{\large \bfseries ĐẠI HỌC QUỐC GIA HÀ NỘI\\ TRƯỜNG ĐẠI HỌC CÔNG NGHỆ}\\[1cm]
+	\includegraphics[width=0.2\linewidth]{uet}\\[1cm]
+	{\Large  \bfseries Trần Minh Chiến}\\[1.5cm]
+	{ \Large \bfseries MÔ HÌNH TÌM KIẾM ĐOẠN NỘI DUNG TƯƠNG ĐỒNG GIỮA CÁC VĂN BẢN KHÔNG CÙNG NGÔN NGỮ}\\[0.5cm]
+	\hfill\\[1.5cm]
+	{\large \bfseries KHÓA LUẬN TỐT NGHIỆP ĐẠI HỌC HỆ CHÍNH QUY}\\	
+	{\large \bfseries Ngành: Công nghệ thông tin}	
+	\hfill\\[3.5cm]	
+	{\large \bfseries HÀ NỘI - 2019}\\	
+	\vfill
+\end{titlepage}
+	
+%-----SECONDARY TITLE PAGE-----%	
+\begin{titlepage}
+	\center
+	\begin{tikzpicture}[overlay,remember picture]
+		\draw [line width=3pt,rounded corners=0pt,]
+		($ (current page.north west) + (25mm,-25mm) $)
+		rectangle
+		($ (current page.south east) + (-15mm,25mm) $);
+		\draw [line width=1pt,rounded corners=0pt]
+		($ (current page.north west) + (26.5mm,-26.5mm) $)
+		rectangle
+		($ (current page.south east) + (-16.5mm,26.5mm) $);
+	\end{tikzpicture}
+	
+	{\large \bfseries ĐẠI HỌC QUỐC GIA HÀ NỘI\\ TRƯỜNG ĐẠI HỌC CÔNG NGHỆ}\\[2cm]
+	{\Large  \bfseries Nguyễn Tuấn Anh}\\[2cm]		
+	{ \Large \bfseries PHÁT TRIỂN PHẦN MỀM NHẬN DẠNG HOA TRÊN NỀN TẢNG THIẾT BỊ DI ĐỘNG}\\[0.5cm]
+	\hfill\\[1.5cm]
+	{\large \bfseries KHÓA LUẬN TỐT NGHIỆP ĐẠI HỌC HỆ CHÍNH QUY}\\	
+	{\large \bfseries Ngành: Công nghệ thông tin}
+	\hfill\\[2cm]
+	\begin{flushleft}
+		{\large \bfseries Cán bộ hướng dẫn: TS. Nguyễn Thị Ngọc Diệp\\}
+		
+		\hfill\\[1cm]		
+
+		{\large \bfseries Cán bộ đồng hướng dẫn: PGS.TS. Nguyễn Việt Hà}\\
+		
+	\end{flushleft}
+	\hfill\\[2cm]		
+	{\large \bfseries HÀ NỘI - 2019}\\		
+	\vfill		
+\end{titlepage}
+
+%-----TERTIARY TITLE PAGE-----%	
+\begin{titlepage}
+	\center
+	\begin{tikzpicture}[overlay,remember picture]
+	\draw [line width=3pt,rounded corners=0pt,]
+	($ (current page.north west) + (25mm,-25mm) $)
+	rectangle
+	($ (current page.south east) + (-15mm,25mm) $);
+	\draw [line width=1pt,rounded corners=0pt]
+	($ (current page.north west) + (26.5mm,-26.5mm) $)
+	rectangle
+	($ (current page.south east) + (-16.5mm,26.5mm) $);
+	\end{tikzpicture}
+	
+	{\large \bfseries VIETNAM NATIONAL UNIVERSITY, HA NOI\\ UNIVERSITY OF ENGINEERING AND TECHNOLOGY}\\[2cm]
+	
+	{\Large  \bfseries Nguyen Tuan Anh}\\[2cm]		
+	{ \Large \bfseries DEVELOPING A FLOWER RECOGNITION\\SOFTWARE ON MOBILE DEVICE PLATFORM }\\[0.2cm]
+	\hfill\\[1.5cm]
+	{\large \bfseries BACHELOR'S THESIS}\\	
+	{\large \bfseries Major: Information Technology}
+	\hfill\\[3cm]
+	\begin{flushleft}
+		{\large \bfseries Supervisor: Dr. Nguyen Thi Ngoc Diep }\\
+		\hfill\\[1cm]		
+		
+		{\large \bfseries Co-Supervisor: Assoc. Prof. Nguyen Viet Ha }\\
+
+	\end{flushleft}
+	\hfill\\[2cm]		
+	{\large \bfseries HANOI - 2019}\\		
+	\vfill		
+\end{titlepage}
+
+%-----THANKS-----%
+\newpage
+\pagenumbering{roman}
+\begin{center}
+	\textbf{\large LỜI CẢM ƠN}
+	 
+
+\end{center}
+
+Lời đầu tiên cho tôi xin được gửi lời cảm ơn chân thành và sâu sắc nhất tới TS. Nguyễn Thị Ngọc Diệp, PGS. TS. Nguyễn Việt Hà, ThS. Nguyễn Ngọc Khương những người đã hướng dẫn và chỉ bảo tận tình nhất cho tôi trong suốt quá trình hoàn thành khóa luận tốt nghiệp này.
+
+Tôi xin được gửi lời cảm ơn tới toàn bộ các thầy giáo, cô giáo của trường Đại học Công Nghệ - Đại học Quốc Gia Hà Nội nhưng người đã tạo điều kiện tốt nhất để tôi có thể học tập, nghiên cứu và hơn cả là đã truyền thụ cho tôi những hành trang kiến thức đầy đủ nhất.
+
+Tôi cũng xin gửi lời cảm ơn chân thành nhất tới các thành viên trong nhóm nghiên cứu SkyLab, tới những người bạn người anh, chị đã giúp đỡ tôi hoàn thiện cả về kiến thức chuyên môn và kỹ năng học tập nghiên cứu.
+
+Cuối cùng và không thể thiếu đó là lời cảm ơn tới bố mẹ và chị tôi và đặc biệt là bạn Dung Phùng những người đã luôn bên cạnh tôi giúp đỡ và động viên cổ vũ tinh thần tôi trong những lúc khó khăn nhất.
+
+Tôi xin chân thành cảm ơn!
+
+\begin{flushright}
+	\begin{varwidth}{\linewidth}\centering
+		Hà Nội, ngày 24 tháng 04 năm 2019\\
+		Sinh viên\\[2cm]
+		Nguyễn Tuấn Anh
+	\end{varwidth}
+\end{flushright}
+	
+%-----ABSTRACT-----%
+\newpage
+\begin{center}
+	\textbf{\large TÓM TẮT}
+\end{center}
+
+Khóa luận này trình bày một ứng dụng nhận dạng tên loài hoa dựa vào ảnh đầu vào trên nền tảng di động. Ứng dụng này được xây dựng với ba mô hình học máy chính: (1) một mô hình phân loại nhị phân để phát hiện có đối tượng hoa trong ảnh hay không, (2) một mô hình nhận dạng tên của loài hoa trong ảnh, và (3) một thuật toán tìm kiếm ảnh tương tự khi hiển thị các ảnh kết quả. 
+
+Ứng dụng được phát triển sử dụng phương pháp sử dụng lại một mô hình học sâu đã được huấn luyện trên bộ dữ liệu lớn khác để trích xuất dữ liệu của ảnh. Thực nghiệm so sánh phương pháp tiếp cận này với các cách trích xuất thuộc tính truyền thống chỉ ra tính khả thi và tiết kiệm của việc sử dụng lại mô hình giữa các bài toán nghiên cứu trong lĩnh vực xử lý ảnh.
+
+Những đóng góp chính của khóa luận là: (1) Việt hoá tên cũng như đặc điểm về sinh trưởng, cách trồng của 102 loài hoa trong bộ dữ liệu Oxford-102, (2) phát triển ứng dụng trên nền tảng di động, và (3) phát triển mô hình phân loại ảnh có hoa hay không với độ chính xác 98.6% và mô hình nhận dạng tên loài hoa với độ chính xác là 78.56%.
+
+
+
+\noindent \textit{\textbf{Từ khóa:} nhận diện hoa, phát hiện hoa, ứng dụng di động}
+
+%-----ABSTRACT (ENGLISH)-----%
+\newpage
+\begin{center}
+	\textbf{\large ABSTRACT}
+\end{center}
+
+This thesis presents an recognition flowers’ names application based on the input images on the mobile platform. This application is built with three main machine learning models: (1) a binary classification model to detect whether there is any flower in the image, (2) a model that recognizes the name of the flower in the image, and (3) an algorithm which searches for results of similar images. 
+
+The application is developed using a method of reusing a Deep learning models trained by another large data set to extract feature of image. Experimental comparison of this approach with traditional feature extraction method points to the feasibility and savings of reusing model of research problems in the field of image processing.
+
+The main contributions of this thesis are: (1) Translating names, the growth characteristics as well as planting methods of 102 flower species in Oxford-102 data set, (2) Developing an application on mobile platform, and (3) Developing a flowers detection models with 98.6% accuracy and an recognition model of flowers with 78.56% accuracy.
+
+
+\noindent \textit{\textbf{Keywords:} flower detection, flower recognition, mobile application}
+
+%-----UNDERTAKING-----%
+\newpage
+\begin{center}
+	\textbf{\large LỜI CAM ĐOAN}
+\end{center}
+Tôi xin cam đoan toàn bộ khóa luận về ứng dụng phát triển phần mềm nhận dạng hoa trên thiết bị di động bao gồm mô hình nhận diện, phần mềm di động và phần mềm hệ thống là do tôi thực hiện dưới sự hướng dẫn của TS. Nguyễn Thị Ngọc Diệp và PGS. TS. Nguyễn Việt Hà.
+
+Tất cả các công trình nghiên cứu, bài báo, khóa luận, tài liệu của các tác giả khác được tôi sử dụng trong khóa luận này đều được trích dẫn tường mình về tác giả và đều có trong danh sách tài liệu tham khảo.
+
+\begin{flushright}
+	\begin{varwidth}{\linewidth}\centering
+		Hà Nội, ngày 24 tháng 04 năm 2019\\
+		Sinh viên\\[2cm]
+		Nguyễn Tuấn Anh
+	\end{varwidth}
+\end{flushright}
+
+%-----TOC-----%
+\newpage
+\tableofcontents
+
+\newpage
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+\newpage
+\addcontentsline{toc}{chapter}{Danh sách ký hiệu, chữ viết tắt}
+\begin{flushleft}
+\bfseries{\Huge{Danh sách ký hiệu, chữ viết tắt}}
+\end{flushleft}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lll}
+		\textbf{MRF}  & Markov Random Field\\[0.3cm]
+		\textbf{HSV}  & Hue, saturation, value \\[0.3cm]
+		\textbf{SIFT} &  scale-invariant feature transform \\[0.3cm]
+		\textbf{HOG} & Histogram of Gradients \\[0.3cm]
+		\textbf{SVM} & Support-vector machine \\[0.3cm]
+		\textbf{SVC} & Support Vector Classification \\[0.3cm]
+		\textbf{LinearSVC} & Linear Support Vector Classification \\[0.3cm]
+		\textbf{KNN} & K-Nearest Neighbour \\[0.3cm]
+		\textbf{RGB} & Red, green, blue \\[0.3cm]
+		\textbf{CNN} & Convolutional Neural Network \\[0.3cm]
+		\textbf{CNNaug} & Convolutional Neural Network + image augmentation \\[0.3cm]
+		\textbf{ONE} & Online Nearest-neighbor Estimation \\[0.3cm]
+		\textbf{PCA} & Principal Component Analysis \\[0.3cm]
+		
+	\end{tabular}
+\end{table}
+
+\newpage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+%-----MAIN-----%
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\chapter{Đặt vấn đề}
+\label{chap:intro}
+
+Các kĩ thuật CIA được thực hiện theo hai hướng tiếp cận chính là phân tích tĩnh (static
+CIA) và phân tích động (dynamic CIA) \cite{cia-survey}. Trong thực tế, hầu hết các nghiên cứu đề xuất các phương pháp phân tích ảnh hưởng sự thay đổi liên quan đến static CIA. Nổi bật trong
+số đó là kĩ thuật CIA dựa trên sự phân loại thay đổi \cite{cia-ct}, kĩ thuật dựa vào đồ thị Call
+Graph \cite{cia-call} và kĩ thuật dựa trên tư tưởng giao thoa sóng nước WAVE-CIA \cite{cia-wave}. Tuy nhiên,
+Các kĩ thuật CIA sử dụng đầu vào là kết quả của quá trình phân tích phụ thuộc từ ứng
+dụng. Quá trình này không thể tổng quát hóa cho toàn bộ các công nghệ và nền tảng hiện
+có.
+
+Các phần còn lại của khóa luận được cấu trúc như sau. \textbf{Chương \ref{chap:background}} trình bày về lý thuyết phân tích ảnh hưởng sự thay đổi. Cuối cùng, \textbf{Chương \ref{chap:conclusion}} là kết luận của toàn bộ khóa luận và công cụ, chương này cũng trình bày các công việc tiếp theo cần thực hiện.
+
+
+\newpage	
+\chapter{Kiến thức cơ sở}
+\label{chap:background}
+\section{Kỹ thuật thực thi tượng trưng}
+\section{Bất biến vòng lặp}
+
+\chapter{Công cụ VTSE kiểm chứng\\ chương trình C/C++}
+\label{chap:VTSE}
+\section{Kiến trúc VTSE}
+
+\chapter{Sinh bất biến vòng lặp}
+\label{chap:Invagen}
+\section{Kiến trúc InvaGen}
+
+\chapter{Kết quả thực nghiệm}
+\label{chap:Experimental results}
+
+\chapter{Kết luận}
+\label{chap:conclusion}
+
+
+\begin{thebibliography}{9}
+\section*{Tiếng Việt}
+	\bibitem{cia-uet}
+	Nguyễn Quỳnh Mai, Nguyễn Công Hưng. Phương pháp và công cụ phân tích sự ảnh hưởng của thay đổi mã nguồn cho các ứng dụng J2EE 6. \textit{Hội nghị SVNCKH khoa CNTT, ĐH Công nghệ}, 2016.
+\section*{Tiếng Anh}
+	\bibitem{cia-survey} 
+	Bixin Li, Xiaobing Sun, Hareton Leung, Sai Zhang.
+	A survey of code-based change impact analysis techniques.
+	In \textit{Software Testing, Verification and Reliability. Wiley Online Library} (2012).
+	
+	\bibitem{cia-bohner}
+	Robert S. Arnold. 1996. Software Change Impact Analysis. IEEE Computer Society Press, Los Alamitos, CA, USA.
+	
+	\bibitem{cia-ct} 
+	Xiaobing Sun, Bixin Li, Chuanqi Tao and Wanzhi Wen. 
+	Change Impact Analysis Based on a Taxonomy of Change Types. In \textit{2010 IEEE 34th Annual Computer Software and Application Conference}, pages 373-382, 2010. 
+	
+	\bibitem{cia-call} 
+	Linda Badri, Mourad Badri and Daniel St-Yves. Supporting Predictive Change Impact Analysis: A Control Call Graph Based Technique. In \textit{Proceedings of the 12th Asia-Pacific Software Engineering Conference}, pages 167-175, 2005.
+	
+	\bibitem{cia-wave} 
+	Bixin Li. WAVE-CIA: a novel CIA approach based on call graph mining. In \textit{Proceedings of the 28th Annual ACM Symposium on Applied Computing}, pages 1000-1005, 2013.
+	
+	\bibitem{jcia}
+	Ba Cuong Le, Son Nguyen Van, Duc Anh Nguyen, Ngoc Hung Pham, Hieu Vo Dinh. JCIA: A Tool for Change Impact Analysis of Java EE Applications. Information Systems Design and Intelligent Applications, pp.105-114, 2018.
+	
+	\bibitem{struts}
+	Don Brown, Chad Davis, and Scott Stanlick. 2008. Struts 2 in Action (In Action). Manning Publications Co., Greenwich, CT, USA.
+\end{thebibliography}
+
+\end{document}
