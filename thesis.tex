@@ -1095,14 +1095,69 @@
 			\end{tabular}
 		\end{table}
 
-		% TODO 
+		\textbf{Huấn luyện mô hình}
+		
+		Sử dụng thuật toán SVM được cài đặt sẵn trong bộ thư viện sklearn ở đây tôi thử nghiệm với kernel "linear".
+
+		\begin{lstlisting}
+		from sklearn.svm import SVC
+		import numpy as np
+		import cPickle
+		from sklearn.preprocessing import normalize
+
+		def svc_training():
+			X_train = np.concatenate((flower_train, non_flower_train), axis=0)
+			Y_train = load_label(flower_train, non_flower_train)
+			clf = SVC(kernel='linear')
+
+			clf.fit(X_train, Y_train)
+			cPickle.dump(clf, open(filename, 'wb'))
+		\end{lstlisting}
+
+
+		\textbf{Độ đo dùng trong thí nghiệm}
+		
+		Sử dụng độ đo F1-score \cite{cia_f1_score} để đo độ chính xác phân loại của mô hình.
+		Ta coi các ảnh có hoa là 1 và các ảnh không có hoa là 0, các chữ viết tắt được định nghĩa là: 
+		\begin{itemize}
+			\item \texttt{True Positive-TP:} số ảnh của lớp 1 được phân loại đúng là 1.
+			\item \texttt{True Negative-TN:} số ảnh của lớp 0 được phân loại đúng là 0.
+			\item \texttt{False Positive-FP:} số ảnh của lớp 0 bị phân loại nhầm thành 1.
+			\item \texttt{False Negative-FN:} số ảnh của lớp 1 bị phân loại nhầm thành 0.
+		\end{itemize}
+
+		công thức tính độ đo F1-score \cite{cia_f1_score}	
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=1]{f1score}
+		\end{figure}
+		
+		Cài đặt tính toán độ đo F1-score trên python.
+		\begin{lstlisting}
+		def calcu_f1_score(actual_1, actual_0):
+			TP = np.count_nonzero(actual_1)
+			FP = np.count_nonzero(actual_0)
+			FN = len(actual_1) - TP
+			TN = len(actual_0) - FP
+			Precision = float(TP) / (TP+FP)
+			Recall = float(TP) / (TP+FN)
+			F1_Score = 2*(Recall * Precision) / (Recall + Precision)
+
+			return F1_Score
+		\end{lstlisting}
+		
 				
 				
 				
 		\section{Kết quả của mô hình phân loại hoa}
 		\subsection{Kết quả sử dụng bộ test Oxford-102}
 		Trong bảng \ref{tbl:table ket qua phan loai hoa} là kết quả độ chính xác khi phân loại hoa.
-				
+		Kết quả tốt nhất đạt được là 78.53\% khi sử dụng thuật toán phân loại máy vector hỗ trợ SVM.
+
+		% \textbf{Độ đo dùng trong thí nghiệm}
+		
+
+
 		\begin{table}[h]
 			\centering
 			\caption{Bảng danh sách các loài hoa phổ biến ở Việt Nam có trong bộ dữ liệu ảnh chụp thực tế}
@@ -1115,9 +1170,8 @@
 				3            & SVM                                 & 78.53                                        \\ \hline
 			\end{tabular}
 		\end{table}
-		Kết quả tốt nhất đạt được là 78.53\% khi sử dụng thuật toán phân loại máy vector hỗ trợ SVM.
 				
-		\subsection{Giải thích chi tiết từng thí nghiệm}
+		\subsection{Giải thích các thí nghiệm}
 		Sử dụng bộ dữ liệu Oxford-102 với tên các bộ dữ liệu được viết tắt:
 		\begin{itemize}
 			\item \texttt{data\_01:} Bộ dữ liệu huấn luyện.
@@ -1164,8 +1218,17 @@
 		\end{itemize}
 				
 		\textbf{Thí nghiệm với thuật toán SVM}
-						
+
 		Sử dụng thuật toán SVM được cài đặt sẵn trong bộ thư viện sklearn
+
+		\textbf{Độ đo dùng trong thí nghiệm}: 
+		
+		Các kết quả được đo bằng hàm score() của thuật toán SVC được cài sẵn trong bộ thư viện 
+		sklearn. Hàm score() là trung bình độ chính xác phân loại của các lớp. Trong đó 
+		độ chính xác của mỗi lớp là số lượng ảnh phân loại chính xác chia cho tổng số ảnh của mỗi lớp.
+
+		\textbf{huấn luyện mô hình}:
+
 		\begin{lstlisting}
 		from sklearn.svm import SVC, LinearSVC
 
@@ -1180,7 +1243,7 @@
 		Các cặp thông số mặc định của hàm SVC (Support Vector Classification): 
 				
 		SVC(C=1.0, kernel='rbf', degree=3, gamma='auto\_deprecated', coef0=0.0, shrinking=True, probability=False, tol=0.001, cache\_size=200, class\_weight=None, verbose=False, max\_iter=-1, decision\_function\_shape=’ovr’, random\_state=None)
-		
+
 		\begin{table}
 			\centering
 			\caption{Bảng kết quả phân loại hoa sử dụng hàm SVC}
@@ -1254,9 +1317,7 @@
 		
 		\section{Kết quả sử dụng bộ test ảnh chụp thực tế}
 		Từ các kết quả khi sử dụng hàm LinearSVC tôi nhận thấy mô hình có số thứ tự  23 cho ta kết quả khả quan nhất 78,53\%. Tôi có sử dụng chính mô hình này để thử nghiệm trên bộ dữ liệu ảnh chụp thực tế gồm 18 loài hoa phổ biến tại Việt Nam và thu được các kết quả như bảng phía dưới. Tôi nhận thấy kết quả ở đây là 70\% vẫn còn tương đối thấp.
-
 		Vì vậy tôi thử nghiệm thêm 2 mô hình mới dựa trên các phương pháp tăng cường ảnh và thông số cho thuật toán vẫn giống với mô hình 23 nhưng thay đổi đi bộ dữ liệu huấn luyện.
-		
 		Với mô hình 27 mỗi loài hoa tôi lấy một nửa số lượng ảnh ra và gọi bộ dữ liệu đó là data\_03. Với mô hình 28 tôi lấy toàn bộ số lượng ảnh trong bộ dữ liệu kiểm tra để huấn luyện.
 		
 		\begin{table}
@@ -1301,6 +1362,55 @@
 		\end{tabular}
 		\end{table}
 
+		Kết quả độ chính xác phân loại được báo cáo trong bảng \ref{tbl:bang phan loai anh thuc te}: 		
+		\begin{itemize}
+			\item Ta có thể thấy khi tăng số lượng bộ dữ liệu huấn luyện lên thì
+			độ chính xác phân loại sẽ tăng lên, ở đây đa phần các loài hoa khi chuyển từ mô hình 23 sang mô hình 27 và 28 đều có độ 
+			chính xác tăng lên.
+			\item Các loài hoa có độ chính xác rất cao có thể thấy là hoa đại và hoa thiên điểu.
+			\item Các loài hoa dễ bị nhầm lần với nhau nhất là hoa sen bị nhầm thành hoa súng, hoa cúc bị nhầm thành hoa hướng dương và ngược lại. Hoa cúc vạn thọ dễ bị nhầm thành hoa cúc.
+			\item Kết quả độ chính xác trung bình trên các loài hoa đạt được cao nhất với mô hình 28 đó là 78.88\%.
+		\end{itemize}\newpage
+
+
+		\section{So sánh kết quả với các ứng dụng đã có sử dụng bộ ảnh chụp thực tế}
+		Từ các kết quả khi sử dụng mô hình bổ sung là mô hình 27 và 28 để phân loại hoa, tôi có so sánh với các ứng dụng đã có và được nêu ở chương 2. 
+		Các ứng dụng đã được nêu bao gồm PlantFinder, PlantNet và PictureThis. Với ứng dụng PictureThis số lượng lần tra cứu miễn phí là 5 lần
+		do vậy tôi chỉ có thể so sánh được với 2 ứng dụng còn lại là PlantFinder và PlantNet.
+
+		Sử dụng mô hình phân loại tốt nhất là mô hình 28 với các ứng dụng là PlantFinder và PlantNet. Bộ dữ liệu sử dụng để kiểm tra là bộ ảnh chụp thực tế gồm 720 ảnh thuộc 18 loài hoa
+		phổ biến ở Việt Nam. Độ chính xác của các ứng dụng khác được tính là kết quả phân loại đầu tiên, các kết quả này đang là tiếng Anh do vậy cần phải dịch sang tiếng Việt.
+		Kết quả được nêu ra trong bảng \ref{tbl:so sanh cac ung dung}
+
+		\begin{table}
+			\centering
+			\caption{Bảng so sánh kết quả phân loại hoa của các ứng dụng sử dụng bộ ảnh chụp thực tế}
+			\label{tbl:so sanh cac ung dung}
+			\begin{tabular}{|l|c|c|c|}
+			\hline
+			\multirow{2}{*}{Tên loài hoa} & \multicolumn{3}{c|}{Độ chính xác phân loại (\%)} \\ \cline{2-4} 
+						& PlantNet     & PlantFinder     & mô hình 28     \\ \hline
+			hoa bìm bìm                   &   100           &  0          & 92.5           \\ \hline
+			hoa cẩm chướng                &      95      &  0            & 75             \\ \hline
+			hoa cúc                       &       80    &    25        & 67.5           \\ \hline
+			hoa cúc vạn thọ               &        60      &  0          & 47.5           \\ \hline
+			hoa đại                       &         100     &  0           & 100            \\ \hline
+			hoa dâm bụt                   &         87.5   &    0          & 67.5           \\ \hline
+			hoa đỗ quyên                  &         70   &    87.5        & 45             \\ \hline
+			hoa giấy                      &          75    &     55         & 82.5           \\ \hline
+			hoa hồng                      &          100  &       72.5       & 95             \\ \hline
+			hoa hướng dương               &          62.5    &     85       & 100            \\ \hline
+			hoa ly                        &         87.5   &         75   & 72.5           \\ \hline
+			hoa mộc lan                   &          80    &        67.5      & 97.5           \\ \hline
+			hoa păng xê                   &         72.5   &          85    & 77.5           \\ \hline
+			hoa sen                       &          90    &       17.5     & 45             \\ \hline
+			hoa súng                      &          52.5    &      30        & 92.5           \\ \hline
+			hoa thiên điểu                &          95   &       0      & 100            \\ \hline
+			hoa trà                       &          60  &        85      & 75             \\ \hline
+			hoa trạng nguyên              &          95    &     0       & 87.5           \\ \hline
+			Trung bình                    &         81.25             & 38.05                  & 78.88                  \\ \hline
+		\end{tabular}
+		\end{table}
 				
 		\begin{table}
 			\centering
@@ -1335,7 +1445,7 @@
 
 		\subsection{Thảo luận về các kết quả}
 		
-		\textbf{	Những trường hợp đã được giải quyết}
+		\textbf{Những trường hợp đã được giải quyết}
 		
 		Những trường hợp đã nhận dạng chính xác và cho kết quả nhận dạng là chính xác là những ảnh chụp đơn bông hoa, ảnh được chụp cận cảnh, không quá tối, chủ thể hoa không quá bé và ảnh có độ nhiễu thấp.
 		
@@ -1424,13 +1534,21 @@
 																																																																																										
 			\bibitem{cia_image_augmentation_2}
 			Marcus D. Bloice, Christof Stocker, Andreas Holzinger. Augmentor: An Image Augmentation Library for Machine Learning. Medical University of Graz Graz, Austria
-																																	\bibitem{cia_imagenet}Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li and Li Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database.Dept. of Computer Science, Princeton University, USA
-																					\bibitem{cia_kaggle_flower}
-																					Ram Longman. Embedded CycleGAN for Shape-Agnostic Imageto-Image Translation.																																					\bibitem{cia_ImageNet ILSVRC 2013}
-																					Olga Russakovsky* · Jia Deng* · Hao Su · Jonathan Krause ·
-Sanjeev Satheesh · Sean Ma · Zhiheng Huang · Andrej Karpathy ·
-Aditya Khosla · Michael Bernstein · Alexander C. Berg · Li Fei-Fei. ImageNet Large Scale Visual Recognition Challenge																		
-																									\bibitem{image_retrival}Y Rui, TS Huang, SF Chang. Image retrieval: Current techniques, promising directions, and open issues																																																																	
+			
+			\bibitem{cia_imagenet}Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li and Li Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database.Dept. of Computer Science, Princeton University, USA
+			
+			\bibitem{cia_kaggle_flower}
+			Ram Longman. Embedded CycleGAN for Shape-Agnostic Imageto-Image Translation.																																					
+			
+			\bibitem{cia_ImageNet ILSVRC 2013}
+			Olga Russakovsky* · Jia Deng* · Hao Su · Jonathan Krause · Sanjeev Satheesh · Sean Ma · Zhiheng Huang · Andrej Karpathy ·
+			Aditya Khosla · Michael Bernstein · Alexander C. Berg · Li Fei-Fei. 
+			ImageNet Large Scale Visual Recognition Challenge																		
+			
+			\bibitem{image_retrival}Y Rui, TS Huang, SF Chang. Image retrieval: Current techniques, promising directions, and open issues																																																																	
+		
+			\bibitem{cia_f1_score}
+			Marina Sokolova, Guy Lapalme. A systematic analysis of performance measures for classification tasks.
 		\end{thebibliography}
 																																																																										
 \end{document}
