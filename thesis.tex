@@ -300,8 +300,14 @@
 																																																																										
 		\section*{Bối cảnh nghiên cứu}
 																																																																										
-		Cùng với sự phát triển của công nghệ nói chung cũng như sự phát triển của các thiết bị di động nói riêng ta có thể nhận thấy một điều rằng ngày nay điện thoại di động là một dụng cụ luôn đi kèm mỗi người mỗi khi đi ra khỏi nhà, đi làm hay đi chơi. Một ví dụ như sau trong một lần đi dạo bạn bỗng nhìn một bông hoa rất đẹp trồng ở ven đường và tự hỏi tên của loài hoa đó là gì. Bạn thấy rằng bông hoa đó rất quen thuộc nhưng không thể nhớ ra được. Bạn nghĩ ngay tới việc tìm kiếm trên Google và có thử lấy điện thoại di động của mình ra chụp ảnh bông hoa đó và tìm trên Google nhưng không thật không may các kết quả tìm kiếm chỉ là các hình ảnh tương tự với ảnh mà bạn chụp và tên các loài hoa thì toàn là tiếng Anh và tiếng Latin, không những thế đôi khi các kết quả trả về từ Google lại không hề liên quan tới tên loài hoa đó.
-		Qua ví dụ trên ta có thể nhận thấy nhu cầu về tìm kiếm tên của các loài hoa từ ảnh chụp thực tế từ các thiết bị di động là hoàn toàn có cơ sở. Do vậy cần một ứng dụng có chức năng nhận dạng tên loài hoa từ các ảnh chụp trên thiết bị di động.
+		Cùng với sự phát triển của công nghệ nói chung cũng như sự phát triển của các thiết bị di động nói riêng ta có thể nhận thấy một điều rằng ngày nay điện thoại di động là một dụng cụ luôn đi kèm mỗi người mỗi khi đi ra khỏi nhà, đi làm hay đi chơi. 
+		
+		Khi muốn tìm kiếm tên của một bông hoa bạn có thể sử dụng thông qua công cụ tìm kiếm Google Images nhưng không thật không may các kết quả tìm kiếm chỉ là các hình ảnh tương tự với ảnh mà bạn chụp và tên các loài hoa thì toàn là tiếng Anh và tiếng Latin, không những thế đôi khi các kết quả trả về từ Google lại không hề liên quan tới tên loài hoa đó. 
+		Ngay cả các ứng dụng nhận dạng hoa đang có sẵn hiện tại cũng không có một ứng nào có hiển thị tên các loài hoa bằng tiếng Việt.
+		Điều này sẽ là một bất lợi khá lớn đối với một số người và nhất là với học sinh khi muốn tìm hiểu về các loài hoa.
+		Do vậy cần một ứng dụng có chức năng nhận dạng tên loài hoa từ các ảnh chụp trên thiết bị di động được xây dựng với dữ liệu tên các loài hoa bằng tiếng Việt
+		với mục đích chính là đáp ứng được nhu cầu tìm kiếm về các loài hoa dành cho người Việt.		
+		\newpage
 																																																																										
 		\begin{figure}[h]
 			\centering
@@ -340,12 +346,12 @@
 			\caption{Hình ảnh ví dụ về các loài hoa thay đổi hình dạng theo thời gian trong bộ dữ liệu Oxford-102 }
 			\label{fig:anh_hoa_khacnhau_thoigian}
 		\end{figure}
-		(Ở bên trái là ảnh hoa sen khi chưa nở còn ở bên phải là ảnh hoa sen khi đã nở)
+		(Cả hai bức ảnh đều là hoa sen trong đó bên trái là ảnh khi chưa nở còn ở bên phải là khi đã nở)
 																																																																										
 		\section{Mục tiêu và phương pháp giải quyết vấn đề}
 		\subsection{Mục tiêu của khóa luận}
 																																																																								
-		Mục t iêuchính của khóa luận này muốn nhắm tới đó là phát triển một ứng dụng nhận dạng tên các loài hoa dành cho người Việt trên nền tảng thiết bị di động. Qua đó cũng đề xuất phương pháp sử dụng mạng học sâu đã được huấn luyện VGG19 \cite{cia_vgg19} trong các mô hình trích xuất thuộc tính từ ảnh, đồng thời tạo tiền đề phát triển cho những nghiên cứu sau này về đề tài nhận diện ảnh.
+		Mục tiêu chính của khóa luận này muốn nhắm tới đó là phát triển một ứng dụng nhận dạng tên các loài hoa dành cho người Việt trên nền tảng thiết bị di động. Qua đó cũng đề xuất phương pháp sử dụng mạng học sâu đã được huấn luyện VGG19 \cite{cia_vgg19} trong các mô hình trích xuất thuộc tính từ ảnh, đồng thời tạo tiền đề phát triển cho những nghiên cứu sau này về đề tài nhận diện ảnh.
 																																																																						
 		Ứng dụng sau khi được phát triển sẽ không đơn thuần chỉ là một công cụ tra cứu mà còn có ý nghĩa trở thành một công cụ học tập, nghiên cứu về thiên nhiên và đặc biệt là các loài hoa giúp các em học sinh, mọi người ở mọi lứa tuổi có thêm một công cụ hữu ích trong việc học tập và nghiên cứu về các loài hoa.
 																																																																						
@@ -361,15 +367,15 @@
 			\item \texttt{Bước 5}: Tính toán độ tương tự của các ảnh trong tưng loài hoa để đưa ra các ảnh phù hợp nhất cho kết quả.
 		\end{itemize}
 																																																																		
-		Qua sự tham khảo các phương pháp trích xuất truyền thống như đã được công bố trong các nghiên cứu \cite{cia-Nilsback06} \cite{cia-Nilsback08} và các nghiên cứu gần đây sử dụng mạng tích chập VGG19 \cite{cia_vgg19}. Phương pháp để giải quyết bài toán sẽ diễn ra với các bước sau:
+		% Qua sự tham khảo các phương pháp trích xuất truyền thống như đã được công bố trong các nghiên cứu \cite{cia-Nilsback06} \cite{cia-Nilsback08} và các nghiên cứu gần đây sử dụng mạng tích chập VGG19 \cite{cia_vgg19}. Phương pháp để giải quyết bài toán sẽ diễn ra với các bước sau:
 																																																																		
-		\begin{itemize}
-			\item Tiền xử lý hình ảnh bằng phương pháp tách phông nền.
-			\item Trích xuất thuộc tính của ảnh sử dụng mạng VGG19 \cite{cia_vgg19}
-			\item Xây dựng một mô hình phân loại nhị phân dùng để phát hiện có đối tượng hoa trong ảnh hay không.
-			\item Xây dựng một mô hình phân loại dùng để nhận dạng tên của loài hoa trong ảnh.
-			\item Và cuối cùng là một thuật toán tìm kiếm ảnh tương tự khi hiển thị các ảnh kết quả.
-		\end{itemize}
+		% \begin{itemize}
+		% 	\item Tiền xử lý hình ảnh bằng phương pháp tách phông nền.
+		% 	\item Trích xuất thuộc tính của ảnh sử dụng mạng VGG19 \cite{cia_vgg19}
+		% 	\item Xây dựng một mô hình phân loại nhị phân dùng để phát hiện có đối tượng hoa trong ảnh hay không.
+		% 	\item Xây dựng một mô hình phân loại dùng để nhận dạng tên của loài hoa trong ảnh.
+		% 	\item Và cuối cùng là một thuật toán tìm kiếm ảnh tương tự khi hiển thị các ảnh kết quả.
+		% \end{itemize}
 																																																												
 																																																												
 		\subsection{Những điểm mạnh của phương pháp này}
@@ -383,7 +389,7 @@
 																																																						
 		\begin{itemize}
 			\item \textbf{Chương \ref{chap:intro}}: Giới thiệu về bài toán nhận dạng hoa, mục đích và các phương pháp sử dụng để giải quyết bài toán phát triển ứng dụng nhận dạng hoa trên thiết bị di động.
-			\item \textbf{Chương \ref{chap:background}}: Trình bày các nghiên cứu liên quan đến bài toán nhận dạng hoa. Các phương pháp trích xuất thuộc tính truyền thống và các phương pháp mới sử dụng mạng học sâu.
+			\item \textbf{Chương \ref{chap:background}}: Trình bày các nghiên cứu liên quan đến bài toán nhận dạng hoa. Các phương pháp trích xuất thuộc tính truyền thống và các phương pháp mới.
 			\item \textbf{Chương \ref{chap:solution}}: Trình bày và giải thích về mô hình tổng quát của ứng dụng cũng như cách huấn luyện các mô hình phân loại được sử dụng trong hệ thống.
 			\item \textbf{Chương \ref{chap:Experimental results}}: Mô tả về cách thu thập dữ liệu, cách cài đặt và sử dụng các thuật toán để giải quyết vấn đề đồng thời giải thích về mục đích cũng như đưa ra các số liệu thống kê về các kết quả đã đạt được trong từng thí nghiệm. 
 			\item \textbf{Chương \ref{chap:conclusion}}: Đưa ra các kết luận về những vấn đề đã giải quyết và những vấn đề chưa giải quyết được đồng thời giới thiệu hướng nghiên cứu để tiếp tục phát triển trong tương lai.	      
@@ -417,7 +423,7 @@
 			\item Có nhiều nghiên cứu sử dụng bộ, cụ thể trong khóa luận có đề cập tới 4 nghiên cứu \cite{cia-Nilsback06} \cite{cia-Nilsback08} \cite{cia-ONE} \cite{cia-CNNFeatures off-the-shelf}.
 		\end{itemize}				
 																																																								
-		Bộ dữ liệu đã được chia thành bộ huấn luyện bao gồm 10 ảnh mỗi loài hoa, bộ xác nhận bao gồm 10 ảnh mỗi loại và các ảnh còn lại gồm 6129 ảnh làm bộ kiểm tra. 	
+		% Bộ dữ liệu đã được chia thành bộ huấn luyện bao gồm 10 ảnh mỗi loài hoa, bộ xác nhận bao gồm 10 ảnh mỗi loại và các ảnh còn lại gồm 6129 ảnh làm bộ kiểm tra. 	
 																																																						
 		\section{Các nghiên cứu phân loại hoa sử dụng bộ hoa của Oxford-102}
 		Các nghiên cứu về phân loại hoa \cite{cia-Nilsback06} \cite{cia-Nilsback08} \cite{cia-ONE} \cite{cia-CNNFeatures off-the-shelf} có sử dụng bộ dữ liệu hoa Oxford-102 \cite{cia-Nilsback06} trong đó có thể nhóm lại thành các nhóm theo các phương pháp chính mà các nghiên cứu có sử dụng.
@@ -432,7 +438,8 @@
 		\subsection{Các nghiên cứu về tiền xử lý ảnh trước khi trích xuất thông tin}
 		Đầu vào của hệ thống nhận dạng hoa là một bức ảnh được thu lại từ một máy ảnh hoặc các thiết bị ghi hình khác. Các ảnh này đôi khi có chất lượng không như mong muốn, ví dụ như quá tối, chủ thể quá nhỏ, quá to. Nguyên nhân chủ yếu có thể do thiết bị ghi hình không tốt hoặc điều kiện ghi hình không tốt ví dụ trời quá tối, chụp ảnh trong khi đang di chuyển, người chụp ảnh không chú ý. Do vậy để bước phân loại có được kết quả tốt nhất ta cần phải có một bước tiền xử lý ảnh. 
 																																																
-		Trong nghiên cứu \cite{cia-Nilsback06} \cite{cia-Nilsback08} các tác giả sử dụng phương pháp tách phông nền MRF \cite{cia_MRF}. Theo như h ình \ref{fig:anh_tach_phong_nen} được lấy trong nghiên cứu \cite{cia-Nilsback06} các ảnh bên trên là ảnh gốc và các ảnh phía dưới đã được tách phông nền. Ta có thể thấy ở bức ảnh thứ 2 bông hoa sau khi tách phông nền đã bị mất đi 1 phần, tỷ lệ mất mát đối tượng sau tách phông nền theo như báo cáo là 6\%.
+		Trong nghiên cứu \cite{cia-Nilsback06} \cite{cia-Nilsback08} các tác giả sử dụng 
+		phương pháp tách phông nền MRF \cite{cia_MRF}. Theo như hình \ref{fig:anh_tach_phong_nen} được lấy trong nghiên cứu \cite{cia-Nilsback06} các ảnh bên trên là ảnh gốc và các ảnh phía dưới đã được tách phông nền. Ta có thể thấy ở bức ảnh thứ 2 bông hoa sau khi tách phông nền đã bị mất đi 1 phần, tỷ lệ mất mát đối tượng sau tách phông nền theo như báo cáo là 6\%.
 																																																		
 		\begin{figure}[h]
 			\centering
@@ -441,17 +448,20 @@
 			\label{fig:anh_tach_phong_nen}
 		\end{figure}
 																																																		
-		Bên cạnh đó còn một kỹ thuật nữa giúp cải thiện tập dữ liệu là tạo ra nhiều dữ liệu hơn từ dữ liệu ban đầu. Đối với xử lý ảnh, kỹ thuật này có tên là tăng cường ảnh (Image Augmentation) \cite{cia_image_augmentation_1} \cite{cia_image_augmentation_2} . 
-		
-		Ví dụ như sau, chúng ta có một bông hoa hồng thì khi soi vào gương, dịch sang trái, phải, trên, dưới, đứng trong tối, ngoài sáng, phóng to, thu nhỏ, xoay 1 góc bất kỳ thì cũng vẫn là một bông hồng đó. Vậy thì từ một ảnh huấn luyện, ta có thể tạo ra vô vàn những ảnh tương tự và vẫn có thể được nhận ra là bông hồng bằng các phép biến đổi ảnh như: xoay ảnh, lật ảnh, dịch ảnh,.. Và như vậy, chúng ta có một tập dữ liệu lớn hơn cho bước huấn luyện. Nghiên cứu \cite{cia-CNNFeatures off-the-shelf} có sử dụng phương pháp này và đã tăng được độ chính xác từ 74,4\% lên thành 86.8\%
+		Bên cạnh đó còn một kỹ thuật nữa giúp cải thiện tập dữ liệu 
+		là tạo ra nhiều dữ liệu hơn từ dữ liệu ban đầu. Đối với xử lý ảnh, kỹ thuật này có tên là tăng cường ảnh (Image Augmentation) \cite{cia_image_augmentation_1} \cite{cia_image_augmentation_2}. 
+		Có thể giải thích như sau, chúng ta có một bông hoa hồng thì khi soi vào gương, dịch sang trái, phải, trên, dưới, đứng trong tối, ngoài sáng, phóng to, thu nhỏ, xoay 1 góc bất kỳ thì 
+		cũng vẫn là một bông hồng đó. Vậy thì từ một ảnh huấn luyện, ta có thể tạo ra vô vàn 
+		những ảnh tương tự và vẫn có thể được nhận ra là bông hồng bằng các phép biến đổi ảnh như: xoay ảnh, lật ảnh, dịch ảnh,.. Và như vậy, chúng ta có một tập dữ liệu lớn hơn cho bước huấn luyện. Nghiên cứu \cite{cia-CNNFeatures off-the-shelf} có sử dụng phương pháp này và đã tăng được độ chính xác từ 74,4\% lên thành 86.8\%.
 																																																		
 		\subsection{Các nghiên cứu về nhận dạng dựa trên vector đặc trưng}
 																																																
-		Trích xuất thông tin là một phương pháp từ các dữ liệu thô ban đầu chuyển thành các tập, thuộc tính giúp chúng ta biểu diễn tập dữ liệu ban đầu tốt hơn. Cụ thể trong bài toán trích xuất thông tin từ ảnh ta có dữ liệu đầu vào là một hình ảnh, hay nói cách khác là một tập hợp biểu diễn các điểm ảnh. Tùy vào các mục đích khác nhau ta sẽ có những phương pháp trích xuất thuộc tính riêng biệt.
+		% Trích xuất thông tin là một phương pháp từ các dữ liệu thô ban đầu chuyển thành các tập, thuộc tính giúp chúng ta biểu diễn tập dữ liệu ban đầu tốt hơn. Cụ thể trong bài toán trích xuất thông tin từ ảnh ta có dữ liệu đầu vào là một hình ảnh, hay nói cách khác là một tập hợp biểu diễn các điểm ảnh. Tùy vào các mục đích khác nhau ta sẽ có những phương pháp trích xuất thuộc tính riêng biệt.
 																																																
 		Nghiên cứu \cite{cia-Nilsback06} sử dụng phương pháp trích xuất các đặc trưng phổ biến của một bức ảnh bao gồm màu sắc, khối hình và hoa văn từ đó sử dụng phương pháp láng giềng gần nhất để phân loại ra tên của loài hoa đó. Kết quả phân loại tốt nhất đạt được bằng cách kết hợp hình dạng và màu sắc đạt kết quả 81.3\%
 																																																
-																																																
+		Bảng \ref{tbl:table ket qua cua Nilsback08} cho thấy các kết quả của nghiên cứu \cite{cia-Nilsback08}, tại đó các tác giả đã tính toán bốn đặc điểm khác nhau cho các bông hoa, cụ thể là hình dạng kết cấu cục bộ, hình dạng của ranh giới, phân bố không gian tổng thể của cánh hoa và màu sắc của các loài hoa. Sau đó kết hợp các tính năng bằng cách sử dụng thuật toán phân loại máy vector hỗ trợ SVM. Kết quả cho thấy độ chính xác phân loại cho các bộ thuộc tính khác nhau là khác nhau. Có thể thấy rằng việc kết hợp tất cả các thuộc tính mang lại độ chính xác tốt hơn nhiều so với sử dụng các thuộc tính đơn lẻ.
+																																												
 																																														
 		\begin{table}[h]
 			\centering
@@ -475,7 +485,6 @@
 			\end{tabular}
 		\end{table}
 																																																
-		Bảng \ref{tbl:table ket qua cua Nilsback08} cho thấy các kết quả của nghiên cứu \cite{cia-Nilsback08}, tại đó các tác giả đã tính toán bốn đặc điểm khác nhau cho các bông hoa, cụ thể là hình dạng kết cấu cục bộ, hình dạng của ranh giới, phân bố không gian tổng thể của cánh hoa và màu sắc của các loài hoa. Sau đó kết hợp các tính năng bằng cách sử dụng thuật toán phân loại máy vector hỗ trợ SVM. Kết quả cho thấy độ chính xác phân loại cho các bộ thuộc tính khác nhau là khác nhau. Có thể thấy rằng việc kết hợp tất cả các thuộc tính mang lại độ chính xác tốt hơn nhiều so với sử dụng các thuộc tính đơn lẻ.
 																																								
 		\textbf{Vector đặc trưng về khối hình}
 																																		
@@ -524,9 +533,13 @@
 																												
 		\textbf{Mạng tích chập OverFeat \cite{cia-CNNFeatures off-the-shelf}}
 		
-		Trong nghiên cứu này \cite{cia-CNNFeatures off-the-shelf} các tác giả sử dụng mạng tích chập có tên là OverFeat. Mỗi lớp tích chập có chứa 96 đến 1024 các cửa sổ tích chập có kích thước 3 x 3 đến 7 x 7. Chỉnh lưu nửa sóng được sử dụng làm chức năng kích hoạt phi tuyến. Các hạt nhân gộp tối đa (Max polling) có kích thước 3 x 3 và 5 x 5 được sử dụng ở các lớp khác nhau. Mô hình nhận đầu vào là hình ảnh màu có kích thước 221 x 221. OverFeat đã được đào tạo cho nhiệm vụ phân loại hình ảnh của ImageNet ILSVRC 2013 và thu được kết quả khá cao.
+		Trong nghiên cứu này \cite{cia-CNNFeatures off-the-shelf} các tác giả sử dụng mạng tích chập có tên là OverFeat. 
+		Mô hình nhận đầu vào là hình ảnh màu có kích thước 221 x 221. OverFeat đã được đào tạo cho nhiệm vụ phân loại hình ảnh của ImageNet ILSVRC 2013 và thu được kết quả khá cao.
 																										
-		Các tác giả sử dụng bộ dữ liệu ImageNet ILSVRC13 \cite{cia_ImageNet ILSVRC 2013} chứa 1,2 triệu hình ảnh được dán nhãn bằng tay của 1000 loại nhãn để huấn luyện cho mô hình. Sau đó có thử nghiệm trên bộ dữ liệu Oxford-102 \cite{cia-Nilsback02} và thu được kết quả như bảng sau.
+		Các tác giả sử dụng bộ dữ liệu ImageNet ILSVRC13 
+		\cite{cia_ImageNet ILSVRC 2013} chứa 1,2 triệu hình ảnh được 
+		dán nhãn bằng tay của 1000 loại nhãn để huấn luyện cho mô hình. 
+		Sau đó có thử nghiệm trên bộ dữ liệu Oxford-102 \cite{cia-Nilsback06} và thu được kết quả như bảng \ref{tbl:table ket qua cua cnn_feature}.
 																										
 		\begin{table}[h]
 			\centering
@@ -550,7 +563,7 @@
 																										
 		Qua đánh giá kỹ lưỡng các mạng đã được tăng độ sâu bằng cách sử dụng kiến trúc với các bộ lọc tích chập rất nhỏ (3 x 3), cho thấy có thể đạt được sự cải thiện đáng kể về cấu hình trước khi nâng độ sâu lên 16 đến 19 lớp.
 																										
-		Dưới đây là mô tả cách cài đặt cho mạng ConvNet trong ảnh  ảnh \ref{fig:vgg19_table}. Kết quả thu được là một vector thuộc tính 4096 chiều.
+		Trong hình \ref{fig:vgg19_image} là mô tả cách cài đặt cho mạng ConvNet. Kết quả thu được là một vector thuộc tính 4096 chiều.
 				\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.7]{vgg19_image}
@@ -575,17 +588,14 @@
 		\textbf{Các bước thực hiện của phương pháp}
 		
 																						
-		Đầu tiên sử dụng phương pháp phát hiện đa vật thể dựa theo các nghiên cứu \cite{cia_object_propo_1} \cite{cia_object_propo_2} \cite{cia_object_propo_3} trên hình ảnh truy vấn và từng hình ảnh của các lớp. Ở đây hình ảnh bên trái ở trên là hình ảnh cần tìm kiếm ta sẽ sử dụng phương pháp pháp hiện đa vật thể ra được các vật thể có trong bức ảnh là "mountain", "terrace" và "natural scene".
-																						
+		Đầu tiên sử dụng phương pháp phát hiện đa vật thể dựa theo các nghiên cứu \cite{cia_object_propo_1} \cite{cia_object_propo_2} \cite{cia_object_propo_3} trên hình ảnh truy vấn và từng hình ảnh của các lớp. Ở đây hình ảnh bên trái ở trên là hình ảnh cần tìm kiếm ta sẽ sử dụng phương pháp pháp hiện đa vật thể ra được các vật thể có trong bức ảnh là "mountain", "terrace" và "natural scene".																				
 		Trong bộ dữ liệu của ta, ta sẽ lấy ra các lớp về "mountain", "terrace" và "natural scene". Rồi sau đó trích xuất các thuộc tính trên mỗi đối tượng đó để cung cấp một mô tả sát nhất cho hình ảnh tìm kiếm. 
-																						
-		So sánh mức độ liên quan giữa các đối tượng đã được phát hiện trong ảnh truy vấn với các đối tượng trong các ảnh thành viên trong lớp đó. Các ảnh nào có độ tương tự gần nhất với các đối tượng có mặt trong hình ảnh cần tìm kiếm sẽ có chữ "TP - true positive" màu vàng.
-																						
+		So sánh mức độ liên quan giữa các đối tượng đã được phát hiện trong ảnh truy vấn với các đối tượng trong các ảnh thành viên trong lớp đó. Các ảnh nào có độ tương tự gần nhất với các đối tượng có mặt trong hình ảnh cần tìm kiếm sẽ có chữ "TP-true positive" màu vàng.
 		Trong bước tìm kiếm, mức độ liên quan của hình ảnh cần tìm kiếm đối với một danh mục hoặc hình ảnh ứng cử viên được tính bằng mức trung bình gần nhất khoảng cách từ hình ảnh cần tìm kiếm đối tượng đến các đối tượng trong lớp đó.
 		
 		\begin{figure}[h]
 			\centering
-			\includegraphics[scale=0.4]{one}
+			\includegraphics[scale=0.3]{one}
 			\caption{Hình ảnh tóm tắt về phương pháp ước lượng láng giềng gần nhất trong nghiên cứu \cite{cia-ONE} của tác giả}
 			\label{fig:one}
 		\end{figure}		\newpage
@@ -618,6 +628,7 @@
 			\item Thời gian phản hồi ở mức khá.
 			\item Có nêu ra đặc điểm chi tiết của loài hoa.
 		\end{itemize}
+
 		\textbf{Một số nhược điểm còn tồn tại:}
 		\begin{itemize}
 			\item Toàn bộ tên loài hoa và chi tiết về đặc điểm của loài hoa đang ở tiếng anh và tiếng latin, gây ra đôi chút khó khăn cho người Việt khi cần tra cứu.
@@ -656,11 +667,14 @@
 		\chapter{Phát triển phần mềm nhận dạng hoa trên thiết bị di động}
 		\label{chap:solution}
 																
-		Như đã trình bày tại chương 2, bước trích xuất thông tin từ ảnh là bước rất quan trọng trong mô hình nhận diện ảnh làm tốt bước này ta sẽ cải thiện được đáng kể độ chính xác và hiện nay có rất nhiều phương pháp để trích xuất thông tin từ ảnh. Để tăng cường độ chính xác nhận diện ảnh cho ứng dụng tôi có thêm một bước vào trước bước phân loại hoa đó là phát hiện ảnh có hoa hay không. 
+		Như đã trình bày tại \textbf{chương \ref{chap:background}}, bước trích xuất thông tin từ ảnh là bước rất quan trọng trong mô hình nhận diện ảnh làm tốt bước này ta sẽ cải thiện được đáng kể độ chính xác và hiện nay có rất nhiều phương pháp để trích xuất thông tin từ ảnh. 
+		Để tăng cường độ chính xác nhận diện ảnh cho ứng dụng tôi có thêm một bước vào trước bước phân loại hoa đó là phát hiện ảnh có hoa hay không. Qua sự tham khảo và học hỏi của các nghiên cứu đã được đề cập trong chương 2, ngoài ra tôi còn học hỏi những điểm mạnh và tìm cách khắc phục những điểm yếu còn tồn tại
+		của các ứng dụng đã có để đề xuất phương pháp giải quyết vấn đề cho ứng dụng của tôi.
+
 																
-		Để có thể làm tốt bước phát hiện hoa ta cần phải trích xuất được thuộc tính của cả các hình ảnh mà không có hoa trong đó, các hình ảnh không có hoa trong đó có thể thuộc rất nhiều các chủ đề như phong cảnh, động vật, đường phố .... Trong nghiên cứu \cite{cia-CNNFeatures off-the-shelf} được công bố năm 2014 các tác giả đã đề xuất sử dụng mạng tích chập đã được huấn luyện bởi 1.2 triệu hình ảnh được lấy từ bộ dữ liệu ImageNet các hình ảnh thuộc rất nhiều chủ đề. Và kết quả thu được khi sử dụng một mô hình trích xuất nhưng lại có thể đáp ứng cho nhiều chủ đề ảnh khác nhau và thu được kết quả khá khả quan đối với chính bộ dữ liệu Oxford-102. 
+		% Để có thể làm tốt bước phát hiện hoa ta cần phải trích xuất được thuộc tính của cả các hình ảnh mà không có hoa trong đó, các hình ảnh không có hoa trong đó có thể thuộc rất nhiều các chủ đề như phong cảnh, động vật, đường phố .... Trong nghiên cứu \cite{cia-CNNFeatures off-the-shelf} được công bố năm 2014 các tác giả đã đề xuất sử dụng mạng tích chập đã được huấn luyện bởi 1.2 triệu hình ảnh được lấy từ bộ dữ liệu ImageNet các hình ảnh thuộc rất nhiều chủ đề. Và kết quả thu được khi sử dụng một mô hình trích xuất nhưng lại có thể đáp ứng cho nhiều chủ đề ảnh khác nhau và thu được kết quả khá khả quan đối với chính bộ dữ liệu Oxford-102. 
 																
-		Theo nghiên cứu \cite{cia_vgg19} cũng sử dụng mạng tích chập nhưng với mô hình có độ sâu các tầng tích chập lớn hơn thì sẽ cho được kết quả khả quan hơn. Vì vậy tôi đề xuất sử dụng mô hình mạng tích chập VGG19 \cite{cia_vgg19} đã được xây dựng sẵn để làm bước trích xuất thông tin cho tất cả các bước trích xuất thông tin trong mô hình hệ thống.
+		% Theo nghiên cứu \cite{cia_vgg19} cũng sử dụng mạng tích chập nhưng với mô hình có độ sâu các tầng tích chập lớn hơn thì sẽ cho được kết quả khả quan hơn. Vì vậy tôi đề xuất sử dụng mô hình mạng tích chập VGG19 \cite{cia_vgg19} đã được xây dựng sẵn để làm bước trích xuất thông tin cho tất cả các bước trích xuất thông tin trong mô hình hệ thống.
 																
 		\section{Mô tả bài toán}
 		Ứng dụng nhận dạng hoa trong khóa luận này sẽ có chức năng chính đó là nhận dạng hoa thông qua ảnh chụp. Như vậy đầu vào và đầu ra của bài toán sẽ là một hình ảnh được ghi lại từ các thiết bị ghi hình và đầu ra có thể có hai trường hợp																																																																			
@@ -674,12 +688,13 @@
 			\includegraphics[scale=0.4]{mota_baitoan}
 			\caption{Ví dụ về đầu vào và đầu ra của bài toán}
 			\label{fig:mota_baitoan}
-		\end{figure}
+		\end{figure}\newpage
 														
 		\section{Mô tả mô hình hệ thống}
 		Dưới đây là mô tả và giải thích chi tiết về các bước trong mô hình hệ thống qua sự tham khảo các nghiên cứu \cite{cia-Nilsback06} \cite{cia-Nilsback08} \cite{cia-ONE} \cite{cia-CNNFeatures off-the-shelf} \cite{cia_vgg19} và học hỏi về điểm mạnh và điểm yếu của các ứng dụng đã có về nhận dạng hoa trên thiết bị di động.
 														
 		\subsection{Mô hình chung}
+
 		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.81]{mohinhchung}
@@ -705,7 +720,7 @@
 		\begin{itemize}
 			\item Đầu vào của bước này đó là bức ảnh mới có trọng tâm là chủ thể cần nhận dạng.
 			\item Ảnh sẽ được thay đổi kích cỡ về dạng 224 x 224.
-			\item Sử dụng mô hình VGG19 \cite{cia_vgg19} để làm bước trích xuất thuộc tính. Dựa trên các cài đặt của mô hình VGG19 \cite{cia_vgg19} ta đã nói ở phần 2.2.3 trong chương 2. Chỉ sử dụng đến tầng thứ 19 FC-4096 của mô hình và kết quả thu được ở đây là một vector thuộc tính có 4096 chiều.
+			\item Sử dụng mô hình VGG19 \cite{cia_vgg19} để làm bước trích xuất thuộc tính. Chỉ sử dụng đến tầng thứ 19 (FC-4096) của mô hình và kết quả thu được ở đây là một vector thuộc tính có 4096 chiều.
 			\item Vector thuộc tính sẽ được chuẩn hóa sẽ được chuẩn hóa L2 (L2 normalization).
 		\end{itemize}
 														
@@ -737,25 +752,25 @@
 														
 		\textbf{Bước 4: Phân loại hoa.} 
 		\begin{itemize}
-			\item Sử dụng phương pháp máy vector hỗ trợ để xây dựng mô hình phân loại chi tiết về cách xây dựng mô hình sẽ được nói kỹ hơn ở phần sau của chương.
+			\item Sử dụng phương pháp máy vector hỗ trợ để xây dựng mô hình phân loại.
 			\item Đầu vào của bước này là vector thuộc tính đã qua bước phát hiện hoa.
 			\item Kết quả của mô hình phân loại ở bước này sẽ cho ta danh sách tên các loài hoa theo thứ tự là có độ phù hợp cao nhất đến thấp nhất. Trong ứng dụng này sẽ lấy ra tên 5 loài hoa có độ phù hợp cao nhất.
 		\end{itemize}
 														
-		Như đã có ở bước thứ 4, kết quả đi ra sẽ là danh sách tên 5 loài hoa. Ở đây, nếu nhiệm vụ của bài toán chỉ là cho ra tên của loài hoa thì có vẻ như không cần bước này. Trong thực tế một loài hoa hồng như có thể xuất hiện trong tự nhiên với khá nhiều màu sắc như hoa hồng đỏ, hoa hồng trắng, vàng. Vì vậy khi tìm kiếm một bông hồng trắng nếu ta sẽ đưa ra danh sách tên của loài hoa đó và kèm theo đó là một bức ảnh có độ tương tự gần giống nhất với bức ảnh cần tìm kiếm của mỗi loài.
 												
 		\textbf{Bước 5: Tính độ tương tự của các loài.} 
 		\begin{itemize}
+			\item Như đã có ở bước thứ 4, kết quả đi ra sẽ là danh sách tên 5 loài hoa. Ở đây, nếu nhiệm vụ của bài toán chỉ là cho ra tên của loài hoa thì có vẻ như không cần bước này. Trong thực tế một loài hoa hồng như có thể xuất hiện trong tự nhiên với khá nhiều màu sắc như hoa hồng đỏ, hoa hồng trắng, vàng. Vì vậy khi tìm kiếm một bông hồng trắng nếu ta sẽ đưa ra danh sách tên của loài hoa đó và kèm theo đó là một bức ảnh có độ tương tự gần giống nhất với bức ảnh cần tìm kiếm của mỗi loài.
 			\item Độ tương tự được tính ở đây là cosin giữa hai vector.
-			      Ở trên đây là công thức tính độ tương tự giữa góc giữa hai hình ảnh A và B trong đó A và B lần lượt là các vector thuộc tính của 2 hình ảnh A và B. 
+			%       Ở trên đây là công thức tính độ tương tự giữa góc giữa hai hình ảnh A và B trong đó A và B lần lượt là các vector thuộc tính của 2 hình ảnh A và B. 
 			      			      			      			      			      			
-			      ||A|| là độ dài của vector thuộc tính A\\
-			      ||B|| là độ dài vector thuộc tính B\\
-			      Độ tương tự sẽ lớn nhất khi vector A trùng vector B và công thức trên cho kết quả bằng 1.
-			      \begin{figure}[h]
-			      	\centering
-			      	\includegraphics[scale=0.8]{cosin}
-			      \end{figure}
+			%       ||A|| là độ dài của vector thuộc tính A\\
+			%       ||B|| là độ dài vector thuộc tính B\\
+			%       Độ tương tự sẽ lớn nhất khi vector A trùng vector B và công thức trên cho kết quả bằng 1.
+			%       \begin{figure}[h]
+			%       	\centering
+			%       	\includegraphics[scale=0.8]{cosin}
+			%       \end{figure}
 			\item Trong mỗi loài hoa được nhận ra ảnh nào có độ tương tự lớn nhất với ảnh cần tìm thì ta sẽ hiển thị ra ảnh đó, để người dùng có thể dễ dàng xác nhận được đúng loài hoa cần tìm.
 		\end{itemize}	
 														
@@ -781,16 +796,15 @@
 		\textbf{Bước 2: Trích xuất thuộc tính.} 
 		\begin{itemize}
 			\item Ảnh sẽ được thay đổi kích cỡ về dạng 224 x 224.
-			\item Sử dụng mô hình VGG19 \cite{cia_vgg19} để làm bước trích xuất thuộc tính. Dựa trên các cài đặt của mô hình VGG19 \cite{cia_vgg19} ta đã nói ở phần 2.2.3 trong chương 2. Chỉ sử dụng đến tầng thứ 19 FC-4096 của mô hình và kết quả thu được ở đây là một vector thuộc tính có 4096 chiều.
+			\item Sử dụng mô hình VGG19 \cite{cia_vgg19} để làm bước trích xuất thuộc tính. Chỉ sử dụng đến tầng thứ 19 FC-4096 của mô hình và kết quả thu được ở đây là một vector thuộc tính có 4096 chiều.
 			\item Vector thuộc tính sẽ được chuẩn hóa sẽ được chuẩn hóa L2 (L2 normalization).
 		\end{itemize}
 										
 		\textbf{Bước 3: Huấn luyện mô hình.} 
 		\begin{itemize}
 			\item Sử dụng phương pháp máy vector hỗ trợ để xây dựng mô hình phân loại nhị phân (binary classification). 
-			\item Lấy bộ dữ liệu huấn luyện để huấn luyện cho mô hình, và sử dụng bộ xác nhận để đo độ chính xác của mô hình.
-			\item kết quả thu được là mô hình phát hiện hoa.
-			      			      			      			      			      
+			\item Lấy bộ dữ liệu huấn luyện để huấn luyện cho mô hình, và sử dụng bộ xác nhận để đo độ chính xác phân loại của mô hình.
+			\item kết quả thu được là mô hình phát hiện hoa.		      			      			      
 		\end{itemize}
 										
 		\textbf{Bước 4: Kiểm tra mô hình.} 
@@ -811,7 +825,7 @@
 		\textbf{Bước 1: Chuẩn bị dữ liệu.} 
 		\begin{itemize}
 			\item Ở đây sử dụng bộ dữ liệu Oxford-102 \cite{cia-Nilsback06}, nhận thấy số lượng ảnh để huấn luyện cho mô hình chỉ là 10 ảnh mỗi loài hoa, như vậy là hơi ít ảnh vì vậy tôi đã gộp bộ huấn luyện và bộ xác nhận lại thành bộ huấn luyện mở rộng. Sau đó sử dụng phương pháp tăng cường ảnh \cite{cia_image_augmentation_2} để tăng số lượng ảnh huấn luyện.
-			\item Do bộ dữ liệu chia lượng ảnh huấn luyện ít mà ảnh dùng để kiểm tra lại nhiều nên tôi đã chia bộ dữ liệu theo cách mới đó là cắt một nửa bộ kiểm tra (mỗi loài hoa trong tập kiểm tra chia một nửa cho bộ huấn luyện nửa còn lại để kiểm tra).
+			\item Chia bộ dữ liệu theo cách mới đó là cắt một nửa bộ kiểm tra (mỗi loài hoa trong tập kiểm tra chia một nửa cho bộ huấn luyện nửa còn lại để kiểm tra).
 			\item Các ảnh trong bộ dữ liệu đều là ảnh chụp cận cảnh bông hoa vì vậy ở mô hình này không cần đến bước tách phông nền.
 		\end{itemize}
 										
@@ -819,7 +833,7 @@
 		\begin{itemize}
 			\item Đầu vào của bước này đó là bức ảnh mới có trọng tâm là chủ thể cần nhận dạng.
 			\item Ảnh sẽ được thay đổi kích cỡ về dạng 224 x 224.
-			\item Sử dụng mô hình VGG19 \cite{cia_vgg19} để làm bước trích xuất thuộc tính. Dựa trên các cài đặt của mô hình VGG19 \cite{cia_vgg19} ta đã nói ở phần 2.2.3 trong chương 2. Chỉ sử dụng đến tầng thứ 19 FC-4096 của mô hình và kết quả thu được ở đây là một vector thuộc tính có 4096 chiều.
+			\item Sử dụng mô hình VGG19 \cite{cia_vgg19} để làm bước trích xuất thuộc tính.
 			\item Vector thuộc tính sẽ được chuẩn hóa sẽ được chuẩn hóa L2 (L2 normalization).
 		\end{itemize}
 										
@@ -837,12 +851,18 @@
 		% chương 4				
 		\chapter{Kết quả thực nghiệm}
 		\label{chap:Experimental results}
-		Tại chương 4 này sẽ nói về cách thu thập các bộ dữ liệu, triển khai cài đặt các phần của ứng dụng dựa trên các phương pháp giải quyết vấn đề đã đặt ra ở chương 3. Chúng ta có một ứng dụng nhận dạng các loài hoa sử dụng thư viện React Native viết cho cả hai hệ điều hành là android và IOS. Ứng dụng sẽ truyền và nhận dữ liệu từ một máy chủ sử dụng các mô hình phân loại đã được huấn luyện. Đồng thời trong chương này cũng công bố các kết quả về các mô hình phân loại đã đạt được
+		Tại chương 4 này sẽ nói về cách thu thập các bộ dữ liệu, triển khai cài đặt các phần của ứng dụng dựa trên các phương pháp giải quyết vấn đề đã đặt ra ở chương 3.
+		Đồng thời trong chương này cũng công bố các kết quả về các mô hình phân loại đã đạt được.
+		
+		Chúng ta có một ứng dụng nhận dạng các loài hoa sử dụng thư viện React Native viết cho cả hai hệ điều hành là android và IOS. Ứng dụng sẽ truyền và nhận dữ liệu từ một máy chủ sử dụng các mô hình phân loại đã được huấn luyện. 
 										
 		\section{Xây dựng bộ dữ liệu.}
 		\subsection{Bộ dữ liệu dùng để phát hiện đối tượng hoa trong ảnh.}
 										
-		\textbf{Cách thu thập:} Sử dụng bộ dữ liệu ImageNet tại trang web : http://www.image-net.org để thu thập các ảnh. Các ảnh tại đây đã được chia sẵn thành các chủ đề nhỏ, đa dạng về chủ đề. Tổng cộng là 5158 ảnh không có hoa. Để lấy các bức ảnh không có hoa là chủ thể chính trong ảnh tôi lựa chọn các chủ đề: 
+		\textbf{Cách thu thập:} Sử dụng bộ dữ liệu ImageNet để thu thập các ảnh. 
+		Các ảnh tại đây đã được chia sẵn thành các chủ đề nhỏ, 
+		đa dạng về chủ đề. Tổng cộng là 5158 ảnh không có hoa. 
+		Để lấy các bức ảnh không có hoa tôi lựa chọn các chủ đề: 
 		\begin{itemize}
 			\item Động vật có vú		: bao gồm 743 ảnh.
 			\item Cảnh vật trong tự nhiên	: bao gồm 930 ảnh.
@@ -881,12 +901,13 @@
 		\end{itemize}
 								
 								
-		\textbf{Khó khăn và hạn chế:} Tại trang ImageNet các ảnh để dưới dạng đường link nên khi tôi lọc ảnh đã gặp phải khá nhiều khó khăn như sau.
+		\textbf{Khó khăn và hạn chế:} Tại trang ImageNet các ảnh để dưới dạng đường link nên khi lọc ảnh đã gặp phải khá nhiều khó khăn như sau.
 		\begin{itemize}
 			\item Ảnh bị lỗi không thể hiển thị (ví dụ là bộ dữ liệu động vật có vú theo như công bố trên trang web có 1169 ảnh nhưng thực tế khi thu thập chỉ còn 743 ảnh, hay như bộ ảnh hoa công bố là 1924 ảnh nhưng khi thu thập lại chỉ còn 1207 ảnh, các bộ dữ liệu khác cũng tương tự chỉ thu thập được tầm 50-80\% ảnh) Đường link không còn được sử dụng, đường link đến hệ thống nước ngoài nên thời gian phản hồi rất lâu
 			\item Một số ảnh quá bé, quá nặng.
 			\item Số ảnh tôi công bố dùng làm bộ dữ liệu ở trên là các ảnh đã bỏ đi các ảnh lỗi ảnh quá bé, quá nhỏ, …
-			\item Các ảnh trong bộ ảnh không có hoa đôi khi vẫn còn sót lại vài ảnh có xuất hiện bông hoa khá to trong đó. Tương tự như vậy, trong bộ ảnh có hoa lấy từ ImageNet vẫn còn có vài ảnh chỉ có chụp thân hoặc gốc cây tỷ lệ này được ghi nhận ở dưới mức 3\%. Tôi đã ngồi duyệt lại bằng tay để lọc ra các ảnh đặc biệt.
+			\item Các ảnh trong bộ ảnh không có hoa đôi khi vẫn còn sót lại vài ảnh có xuất hiện bông hoa trong đó. Tương tự như vậy, trong bộ ảnh có hoa vẫn còn có vài ảnh chỉ có chụp thân hoặc gốc cây tỷ lệ này được ghi nhận ở dưới mức 3\%. 
+			Tôi đã ngồi duyệt lại bằng tay để lọc ra các ảnh đặc biệt.
 		\end{itemize}
 								
 									
@@ -903,12 +924,12 @@
 								
 		\begin{figure}[h]
 			\centering
-			\includegraphics[scale=0.35]{rose_oxford}
+			\includegraphics[scale=0.3]{rose_oxford}
 			\caption{Hình ảnh về trang web chứa tên loài hoa của bộ dữ liệu Oxford-102}
 			\label{fig:rose_oxford}
 		\end{figure}
 								
-		Có thể thấy tiêu đề của trang "Rose (Rosa)" được viết dưới dạng "Tên tiếng Anh( Tên Latin)". Tôi sử dụng công cụ Scrapy dành cho ngôn ngữ python để trích xuất tự động danh sách tên của các loài hoa từ 1 đến 102 vào một file văn bản. Sau đó sử dụng Google và Wikipedia để tra cứu tên tiếng Anh hoặc tên Latin để tìm kiếm ra tên tiếng việt và đặc điểm cũng như cách trồng của từng loại hoa từ đó thêm vào cơ sở dữ liệu.
+		Trong hình \ref{fig:rose_oxford} có thể thấy tiêu đề của trang "Rose (Rosa)" được viết dưới dạng "Tên tiếng Anh( Tên Latin)". Tôi sử dụng công cụ Scrapy dành cho ngôn ngữ python để trích xuất tự động danh sách tên của các loài hoa từ 1 đến 102 vào một file văn bản. Sau đó sử dụng Google và Wikipedia để tra cứu tên tiếng Anh hoặc tên Latin để tìm kiếm ra tên tiếng việt và đặc điểm cũng như cách trồng của từng loại hoa từ đó thêm vào cơ sở dữ liệu.
 										
 		Trong lúc tìm tên tiếng việt cho các loài hoa tôi gặp phải một số những khó khăn sau:
 		\begin{itemize}
@@ -919,7 +940,13 @@
 		\subsection{Bộ dữ liệu ảnh chụp thực tế.}
 		\textbf{Cách thu thập.}
 								
-		Mục tiêu của bộ dữ liệu này là dùng để kiểm tra mô hình phân loại. Vì ứng dụng của tôi muốn hướng tới là một ứng dụng nhận dạng hoa dành cho người Việt vì vậy các loài hoa mọi người thường hay tìm kiếm sẽ là các loài hoa phổ biến được trồng và mọc tại Việt Nam. Tôi lựa chọn ở đây gồm có 18 loài hoa phổ biến mọc tại Việt Nam các ảnh ở đây là một phần là do chính tôi chụp bằng điện thoại di động, một phần lấy từ trang diễn đàn vnphoto.net và google images. Số lượng ảnh mỗi loài hoa là 40 ảnh mỗi loại vì một loài hoa có thể có nhiều màu ví dụ như hoa giấy có màu tím, hồng và trắng thì số lượng mỗi màu sắc của mỗi loài sẽ gần bằng nhau. Tổng cộng tôi thu thập 720 ảnh của 18 loài hoa danh sách cụ thể các loài hoa và số lượng màu sắc tôi để trong bảng dưới đây.
+		Mục tiêu của bộ dữ liệu này là dùng để kiểm tra mô hình phân loại. 
+		Vì ứng dụng của tôi muốn hướng tới là một ứng dụng nhận dạng hoa dành 
+		cho người Việt vì vậy các loài hoa mọi người thường hay tìm kiếm sẽ là 
+		các loài hoa phổ biến được trồng và mọc tại Việt Nam. Tôi lựa chọn ở đây gồm có 18 loài hoa phổ biến mọc tại Việt Nam các ảnh ở đây là một phần là do chính tôi chụp bằng điện thoại di động, một phần lấy từ diễn đàn vnphoto.net và google images. 
+		
+		Số lượng ảnh mỗi loài hoa là 40 ảnh mỗi loại vì một loài hoa có thể có nhiều màu ví dụ như hoa giấy có màu tím, hồng và trắng thì số lượng mỗi màu sắc của mỗi loài sẽ gần bằng nhau. Tổng cộng tôi thu thập 720 ảnh của 18 loài hoa danh sách cụ thể các loài hoa và số lượng màu sắc tôi để trong 
+		bảng \ref{tbl:table danh sach hoa vn}.
 								
 								
 		\begin{table}[h]
@@ -958,7 +985,12 @@
 		\end{itemize}
 						
 		\section{Xây dựng và cài đặt ứng dụng trên thiết bị di động}
-		Sử dụng bộ thư viện React Native để xây dựng ứng dụng di động native sử dụng Javascript do Facebook phát hành. Sử dụng React Native để chỉ cần viết một lần duy nhất có thể xây dựng được ứng dụng cho cả iOS và Android.
+		Sử dụng bộ thư viện React Native để xây dựng ứng dụng di động do Facebook phát hành. 
+		Ưu điểm của React Native để chỉ cần viết một lần duy nhất có thể xây dựng được ứng dụng cho cả iOS và Android.
+		
+		Ứng dụng sẽ không đơn thuần chỉ có một chức năng tìm kiếm bằng hình ảnh, ngoài ra nó còn có thể được coi là một diễn đàn
+		nơi mọi người có thể chụp lại các bức ảnh về các loài hoa đẹp. Đôi khi ứng dụng sẽ gặp phải các loài hoa chưa được thêm vào bộ dữ liệu thì sẽ được mọi người trên diễn đàn trợ giúp.
+
 		\subsection{Mô tả sơ đồ các ca sử dụng chính của ứng dụng}
 						
 		\begin{figure}[h]
@@ -970,8 +1002,11 @@
 		Các ca sử dụng của ứng dụng là :
 				
 		\begin{itemize}
-			\item Tìm kiếm, nhận dạng loài hoa bằng ảnh.
-			\item Tìm kiếm loài hoa bằng tên.
+			\item Tìm kiếm, nhận dạng loài hoa bằng ảnh: Đầu vào sẽ là một bức ảnh, có thể chụp trực tiếp từ máy ảnh của thiết bị di động
+			hoặc đơn thuần chỉ là một tệp dữ liệu ảnh trong thiết bị di động. Và đầu ra nếu bức ảnh đó không có hoa là thông báo không tìm thấy hoa trong ảnh,
+			hoặc nếu trong ảnh xuất hiện hoa thì là danh sách tên 5 loài hoa phù hợp nhất.
+			\item Tìm kiếm loài hoa bằng tên: Đầu vào sẽ là một chuỗi ký tự nhập từ bàn phím của thiết bị di động, từ khóa sẽ được tìm kiếm và trả về kết quả dựa vào độ trùng khớp với các dữ liệu về tên tiếng Việt, tên tiếng Anh hoặc
+			tên latin.
 			\item Xem đặc điểm chi tiết của loài hoa đó.
 			\item Xem lại các ảnh của bản thân.
 			\item Xem các ảnh của mọi người tải lên hệ thống.
@@ -987,9 +1022,9 @@
 			\includegraphics[scale=0.2]{app_search2}
 			\caption{Hình ảnh giao diện tra cứu và kết quả tra cứu của ứng dụng.}
 			\label{fig:app_search}
-		\end{figure}
+		\end{figure}\newpage
 				
-		Ở giao diện kết quả tìm kiếm bằng ảnh ta sẽ nhìn thấy danh sách các loài hoa phù hợp nhất với ảnh chụp đó. Các loài hoa sẽ được sắp xếp theo thứ tự từ trên xuống dưới tương ứng với mức độ phù hợp cao đến thấp. Danh sách tên các loài hoa hiển thị bao gồm tên tiếng Việt, tên tiếng Anh, tên tiếng Latin và đi kèm với đó là hình ảnh đại diện là hình ảnh của loài hoa trong cơ sở dữ liệu có độ tương tự cao nhất với ảnh tìm kiếm. Khi chụp một bức ảnh không có hoa thì kết quả trả về sẽ là không tìm thấy hoa.
+		Ở giao diện kết quả tìm kiếm bằng ảnh ta sẽ nhìn thấy danh sách các loài hoa phù hợp nhất với ảnh chụp đó. Các loài hoa sẽ được sắp xếp theo thứ tự từ trên xuống dưới tương ứng với mức độ phù hợp cao đến thấp. Danh sách tên các loài hoa hiển thị bao gồm tên tiếng Việt, tên tiếng Anh, tên tiếng Latin và đi kèm với đó là hình ảnh đại diện là hình ảnh của loài hoa trong cơ sở dữ liệu có độ tương tự cao nhất với ảnh tìm kiếm. \newpage
 				
 		\begin{figure}[h]
 			\centering
@@ -998,21 +1033,21 @@
 			\caption{Hình ảnh giao diện của ứng dụng khi không phát hiện hoa trong ảnh.}
 			\label{fig:app_no_flower}
 		\end{figure}
+		Khi chụp một bức ảnh không có hoa thì kết quả trả về sẽ là không tìm thấy hoa, ở trong hình \ref{fig:app_no_flower} tôi có lấy ví dụ là ứng dụng chụp máy tính của tôi trong hình bên trái và bên phải là ảnh chụp kết quả trả về.\newpage
 				
-		\newpage
-		Chức năng tìm kiếm bằng tên sẽ tìm kiếm theo từ khóa mà bạn nhập vào. Từ khóa bạn nhập có thể là tên tiếng Việt, tiếng Anh, hoặc tên tiếng Latin.
-		Khi bấm vào xem chi tiết từng loài hoa ta sẽ có các thông tin sau
+		
 		\begin{figure}[h]
 			\centering
+			\includegraphics[scale=0.2]{app_search_name2}
 			\includegraphics[scale=0.2]{app_search_name}
 			\caption{Hình ảnh giao diện tìm kiếm bằng tên.}
 			\label{fig:app_search_name}
 		\end{figure}
-						
+		Chức năng tìm kiếm bằng tên sẽ tìm kiếm theo từ khóa mà bạn nhập vào. 
+		Từ khóa bạn nhập có thể là tên tiếng Việt, tiếng Anh, hoặc tên tiếng Latin.
+		Ở đây khi bạn chưa nhập bất kỳ từ khóa nào thì ứng dụng sẽ gợi ý danh sách các loài hoa được mọi người tìm kiếm nhiều nhất.
 		\newpage
-		Ở giao diện chi tiết loài hoa tôi có nêu ra tên của loài hoa đó theo tiếng Việt, tiếng Anh, và tên Latin. Đồng thời phía dưới đó chính là đặc điểm của loài hoa đó bao gồm:Đặc điểm chung của loài hoa, đặc điểm sinh trưởng, cách trồng và chăm sóc cây, và ý nghĩa của tên loài hoa.
-				
-		Bên cạnh chức năng xem chi tiết đặc điểm của loài hoa là chức năng xem các ảnh tương tự của loài hoa, các ảnh ở đây là các ảnh trong bộ cơ sở dữ liệu.
+		
 		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.18]{app_detail1}
@@ -1020,9 +1055,11 @@
 			\caption{Hình ảnh giao diện chi tiết loài hoa.}
 			\label{fig:app_detail}
 		\end{figure}
-				
-				
+		
+		Ở giao diện chi tiết loài hoa tôi có nêu ra tên của loài hoa đó theo tiếng Việt, tiếng Anh, và tên Latin. Đồng thời phía dưới đó chính là đặc điểm của loài hoa đó bao gồm:Đặc điểm chung của loài hoa, đặc điểm sinh trưởng, cách trồng và chăm sóc cây, và ý nghĩa của tên loài hoa.
+		Bên cạnh chức năng xem chi tiết đặc điểm của loài hoa là chức năng xem các ảnh tương tự của loài hoa, các ảnh ở đây là các ảnh trong bộ cơ sở dữ liệu.
 		\newpage
+		
 		Chức năng xem lại các ảnh của bản thân, bạn có thể nhìn thấy danh sách các ảnh mà mình đã từng tìm kiếm. Đồng thời cũng có thể nhìn thấy danh sách các ảnh mà do người dùng khác tìm kiếm. 
 		\begin{figure}[h]
 			\centering
@@ -1034,6 +1071,7 @@
 				
 		\newpage
 		Mỗi bức ảnh khi bấm vào ta đều có thể để lại bình luận về loài hoa đó cũng như chia sẻ kinh nghiệm bản thân về cách trồng cũng như chăm sóc loài hoa cho mọi người cùng biết. Đồng thời đưa ra kết quả nhận dạng loài hoa mà ứng dụng đã phản hồi.
+	
 				
 		\begin{figure}[h]
 			\centering
@@ -1041,14 +1079,14 @@
 			\includegraphics[scale=0.2]{app_comment2}
 			\caption{Hình ảnh giao diện xem nhận xét của mọi người.}
 			\label{fig:app_comment}
-		\end{figure}
+		\end{figure}\newpage
 				
-		\newpage
+		
 		\section{Kết quả của mô hình phát hiện hoa.}
-		Dưới đây là kết quả độ chính xác khi phát hiện các loài hoa.
+		Trong bảng \ref{tbl:table ket qua detect flower} là kết quả độ chính xác khi phát hiện các loài hoa.
 		\begin{table}[h]
 			\centering
-			\caption{Bảng danh sách các loài hoa phổ biến ở Việt Nam có trong bộ dữ liệu ảnh chụp thực tế}
+			\caption{Bảng kết quả phân loại của mô hình phát hiện hoa}
 			\label{tbl:table ket qua detect flower}
 			\begin{tabular}{|c|l|c|}
 				\hline
@@ -1056,12 +1094,14 @@
 				1            & SVM                                 & 98.6                                         \\ \hline   			
 			\end{tabular}
 		\end{table}
+
+		% TODO 
 				
 				
 				
 		\section{Kết quả của mô hình phân loại hoa}
 		\subsection{Kết quả sử dụng bộ test Oxford-102}
-		Dưới đây là kết quả độ chính xác.
+		Trong bảng \ref{tbl:table ket qua phan loai hoa} là kết quả độ chính xác khi phân loại hoa.
 				
 		\begin{table}[h]
 			\centering
