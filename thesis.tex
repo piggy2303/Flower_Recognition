@@ -1382,6 +1382,12 @@
 		phổ biến ở Việt Nam. Độ chính xác của các ứng dụng khác được tính là kết quả phân loại đầu tiên, các kết quả này đang là tiếng Anh do vậy cần phải dịch sang tiếng Việt.
 		Kết quả được nêu ra trong bảng \ref{tbl:so sanh cac ung dung}
 
+		Nhận xét: 		
+		\begin{itemize}
+			\item Với ứng dụng PlantFinder ta có thể thấy sự khác biệt trong các kết quả độ chính xác, một số loài có độ chính xác rất cao vì dụ như hoa đỗ quyên hoặc hoa trà nhưng đa phần là không nhận dạng được các loài hoa như hoa bìm bìm hoặc hoa cẩm chướng. Có thể bộ dữ liệu về hoa của ứng dụng chưa đầy đủ và thiếu các loài hoa phổ biến tại Việt Nam.
+			\item Với ứng dụng PlantNet các loài hoa đa phần có đô chính xác tốt, có thể kể đến như hoa bìm bìm hoặc hoa hồng đặc trưng và có đô chính xác 100\%.
+		\end{itemize}
+
 		\begin{table}
 			\centering
 			\caption{Bảng so sánh kết quả phân loại hoa của các ứng dụng sử dụng bộ ảnh chụp thực tế}
@@ -1402,7 +1408,7 @@
 			hoa hướng dương               &          62.5    &     85       & 100            \\ \hline
 			hoa ly                        &         87.5   &         75   & 72.5           \\ \hline
 			hoa mộc lan                   &          80    &        67.5      & 97.5           \\ \hline
-			hoa păng xê                   &         72.5   &          85    & 77.5           \\ \hline
+			hoa păng xê                   &         72.5   &          85    & 77.5           \\ \hline 
 			hoa sen                       &          90    &       17.5     & 45             \\ \hline
 			hoa súng                      &          52.5    &      30        & 92.5           \\ \hline
 			hoa thiên điểu                &          95   &       0      & 100            \\ \hline
@@ -1410,8 +1416,20 @@
 			hoa trạng nguyên              &          95    &     0       & 87.5           \\ \hline
 			Trung bình                    &         81.25             & 38.05                  & 78.88                  \\ \hline
 		\end{tabular}
-		\end{table}
-				
+		\end{table}\newpage
+		
+		\section{Kết quả tìm kiếm với Google Image}
+		Một thống kê khác cũng khá quan trọng đó chính là tìm kiếm bộ ảnh chụp thực tế với chính Google Image.
+		Kết quả tìm kiếm được thể hiện trong bảng \ref{tbl:bang so sanh voi tim kiem googleimage}
+		
+		Nhận xét:
+		\begin{itemize}
+			\item Tỷ lệ về kết quả phản hồi được hiển thị bằng tiếng Anh là 98.9\% ngoài ra là các thứ tiếng như : Ấn Độ, Ngan, Tây Ban Nha, Trung Quốc, Đức, Indonesia. Và đặc biệt không có một kết quả nào được hiển thị với tiếng Việt.
+			\item Tỷ lệ kết quả nhận dạng sai trung bình khá thấp nhưng có một số trường hợp đặc biệt ở đây ví dụ như: Hoa cúc hay bị nhầm lẫn với hoa hướng dương, Hoa sen hay bị nhầm với hoa súng. 
+			Hoa cúc vạn thọ hay bị nhầm với hoa cẩm tú cầu. Hoa súng hay bị nhầm với hoa sen.
+			\item Tỷ lệ kết quả trả về là không liên quan đến tên loài hoa là một vấn đề trước đây không được mấy quan tâm, các kết quả không liên quan thuộc nhiều chủ đề khác nhau như tên công ty bán hoa, tên ngày lễ hội ở các nước...
+		\end{itemize}
+
 		\begin{table}
 			\centering
 			\caption{Bảng so sánh kết quả tìm kiếm bằng GoogleImage}
@@ -1459,7 +1477,7 @@
 
 		\begin{figure}[h]
 			\centering
-			\includegraphics[scale=0.3]{anhlanghoa}
+			\includegraphics[scale=0.2]{anhlanghoa}
 			\caption{Hình ảnh ví dụ về nhiều loài hoa trong một ảnh trên trang web vnphoto.net}
 			\label{fig:app_comment}
 		\end{figure}
