@@ -26,7 +26,6 @@
 \renewcommand\labelitemi{--}
 
 \setlength{\parskip}{6pt}
-\renewcommand\thesection{}
 
 \usetikzlibrary{calc}
 \setlength{\parindent}{10mm}
@@ -65,9 +64,7 @@
   tabsize=3
 }
 
-
 \renewcommand{\lstlistingname}{Mã nguồn}
-% \renewcommand{\thesection}{}
 
 \newenvironment{thuattoan}[1][h]
   {\renewcommand{\algorithmcfname}{Thuật toán}
@@ -216,7 +213,7 @@
 			\textbf{\large TÓM TẮT}
 		\end{center}
 																																			
-		Khóa luận này trình bày một ứng dụng nhận dạng tên loài hoa dựa vào ảnh đầu vào trên nền tảng di động. Ứng dụng này được xây dựng với ba mô hình học máy chính: (1) một mô hình phân loại nhị phân để phát hiện có đối t hoa trong ảnh hay không, (2) một mô hình nhận dạng tên của loài hoa trong ảnh, và (3) một thuật toán tìm kiếm ảnh tương tự khi hiển thị các ảnh kết quả. 
+		Khóa luận này trình bày một ứng dụng nhận dạng tên loài hoa dựa vào ảnh đầu vào trên nền tảng di động. Ứng dụng này được xây dựng với ba mô hình học máy chính: (1) một mô hình phân loại nhị phân để phát hiện có đối tượng hoa trong ảnh hay không, (2) một mô hình nhận dạng tên của loài hoa trong ảnh, và (3) một thuật toán tìm kiếm ảnh tương tự khi hiển thị các ảnh kết quả. 
 																	
 		Ứng dụng được phát triển sử dụng phương pháp sử dụng lại một mô hình học sâu đã được huấn luyện trên bộ dữ liệu lớn khác để trích xuất dữ liệu của ảnh. Thực nghiệm so sánh phương pháp tiếp cận này với các cách trích xuất thuộc tính truyền thống chỉ ra tính khả thi và tiết kiệm của việc sử dụng lại mô hình giữa các bài toán nghiên cứu trong lĩnh vực xử lý ảnh.
 																	
@@ -325,7 +322,7 @@
 		\end{itemize}
 		Những khó khăn khi nhận diện hoa
 		\begin{itemize}
-			\item  Số lượng các loài hoa khác nhau mọc trong tự nhiên vô cùng đa dạng và phong phú. Các loài hoa có vô số màu sắc, kiểu dáng hình thù khác nhau gây khó khăn khi phải phân loại với một số lượng loài lớn.
+			\item  Các loài mọc trong tự nhiên có số lượng loài rất lớn với vô số màu sắc, kiểu dáng hình thù khác nhau gây khó khăn khi phải phân loại với một số lượng loài lớn.
 			\item  Các loài hoa đôi khi có kiểu dáng tương đối giống nhau.
 			\item  Các loài hoa trong thời gian sinh trưởng có rất nhiều hình thái khác nhau gây ra nhầm lẫn một ví dụ điển hình có thể thấy đó là hoa sen khi chưa nở và lúc đã nở có hình dạng rất khác nhau.
 		\end{itemize}
@@ -351,9 +348,9 @@
 		\section{Mục tiêu và phương pháp giải quyết vấn đề}
 		\subsection{Mục tiêu của khóa luận}
 																																																																								
-		Mục tiêu chính của khóa luận này muốn nhắm tới đó là phát triển một ứng dụng nhận dạng tên các loài hoa dành cho người Việt trên nền tảng thiết bị di động. Qua đó cũng đề xuất phương pháp sử dụng mạng học sâu đã được huấn luyện VGG19 \cite{cia_vgg19} trong các mô hình trích xuất thuộc tính từ ảnh, đồng thời tạo tiền đề phát triển cho những nghiên cứu sau này về đề tài nhận diện ảnh.
+		Mục tiêu chính của khóa luận này muốn nhắm tới đó là phát triển một ứng dụng nhận dạng tên các loài hoa dành cho người Việt trên nền tảng thiết bị di động. Ứng dụng sẽ không đơn thuần chỉ là một công cụ tra cứu mà còn có ý nghĩa trở thành một công cụ học tập, nghiên cứu về thiên nhiên và đặc biệt là các loài hoa giúp các em học sinh, mọi người ở mọi lứa tuổi có thêm một công cụ hữu ích trong việc học tập và nghiên cứu về các loài hoa. Hơn nữa là qua ứng dụng này đề xuất phương pháp sử dụng mạng học sâu đã được huấn luyện VGG19 \cite{cia_vgg19} trong các mô hình trích xuất thuộc tính từ ảnh, đồng thời tạo tiền đề phát triển cho những nghiên cứu sau này về đề tài nhận diện ảnh.
 																																																																						
-		Ứng dụng sau khi được phát triển sẽ không đơn thuần chỉ là một công cụ tra cứu mà còn có ý nghĩa trở thành một công cụ học tập, nghiên cứu về thiên nhiên và đặc biệt là các loài hoa giúp các em học sinh, mọi người ở mọi lứa tuổi có thêm một công cụ hữu ích trong việc học tập và nghiên cứu về các loài hoa.
+		
 																																																																						
 		\subsection{Phương pháp giải quyết bài toán nhận dạng hoa}
 																																																																				
@@ -458,7 +455,7 @@
 																																																
 		% Trích xuất thông tin là một phương pháp từ các dữ liệu thô ban đầu chuyển thành các tập, thuộc tính giúp chúng ta biểu diễn tập dữ liệu ban đầu tốt hơn. Cụ thể trong bài toán trích xuất thông tin từ ảnh ta có dữ liệu đầu vào là một hình ảnh, hay nói cách khác là một tập hợp biểu diễn các điểm ảnh. Tùy vào các mục đích khác nhau ta sẽ có những phương pháp trích xuất thuộc tính riêng biệt.
 																																																
-		Nghiên cứu \cite{cia-Nilsback06} sử dụng phương pháp trích xuất các đặc trưng phổ biến của một bức ảnh bao gồm màu sắc, khối hình và hoa văn từ đó sử dụng phương pháp láng giềng gần nhất để phân loại ra tên của loài hoa đó. Kết quả phân loại tốt nhất đạt được bằng cách kết hợp hình dạng và màu sắc đạt kết quả 81.3\%
+		Nghiên cứu \cite{cia-Nilsback06} sử dụng phương pháp trích xuất các đặc trưng phổ biến của một bức ảnh bao gồm màu sắc, khối hình và hoa văn từ đó sử dụng phương pháp láng giềng gần nhất để phân loại ra tên của loài hoa đó. Kết quả phân loại tốt nhất đạt được khi thử nghiệm trên bộ kiểm tra Oxford-17 là bằng cách kết hợp hình dạng và màu sắc đạt kết quả 81.3\%.
 																																																
 		Bảng \ref{tbl:table ket qua cua Nilsback08} cho thấy các kết quả của nghiên cứu \cite{cia-Nilsback08}, tại đó các tác giả đã tính toán bốn đặc điểm khác nhau cho các bông hoa, cụ thể là hình dạng kết cấu cục bộ, hình dạng của ranh giới, phân bố không gian tổng thể của cánh hoa và màu sắc của các loài hoa. Sau đó kết hợp các tính năng bằng cách sử dụng thuật toán phân loại máy vector hỗ trợ SVM. Kết quả cho thấy độ chính xác phân loại cho các bộ thuộc tính khác nhau là khác nhau. Có thể thấy rằng việc kết hợp tất cả các thuộc tính mang lại độ chính xác tốt hơn nhiều so với sử dụng các thuộc tính đơn lẻ.
 																																												
@@ -469,7 +466,7 @@
 			\label{tbl:table ket qua cua Nilsback08}
 			\begin{tabular}{|l|c|}
 				\hline
-				\textbf{Thuộc tính trích xuất}      & \textbf{Độ chính xác phân loại (\%)} \\ \hline
+				\textbf{Phương pháp trích xuất}      & \textbf{Độ chính xác phân loại (\%)} \\ \hline
 				HSV                                       & 43.0                                         \\ \hline
 				SIFT internal                             & 55.1                                         \\ \hline
 				SIFT boundary                             & 32.0                                         \\ \hline
@@ -488,7 +485,7 @@
 																																								
 		\textbf{Vector đặc trưng về khối hình}
 																																		
-		Ở hình \ref{fig:anh_hoa_hinh_dang} theo thứ tự từ trái qua phải: hoa gió, hoa buttercup và hoa thủy tiên. Nhìn qua thì các loài hoa này có cấu trúc tương tự nhau nhưng lại không hoàn toàn giống nhau. Sử dụng các mô tả SIFT \cite{cia_SIFT} trên một lưới thông thường độ rộng của lưới M điểm ảnh, với phạm vi từ 10 đến 70 pixel, khu vực hỗ trợ cho Tính toán SIFT với bán kính R dao động từ 10 đến 70 pixel.				 
+		Ở hình \ref{fig:anh_hoa_hinh_dang} theo thứ tự từ trái qua phải: hoa gió, hoa buttercup và hoa thủy tiên. Nhìn qua thì các loài hoa này có cấu trúc tương tự nhau nhưng lại không hoàn toàn giống nhau. Sử dụng các mô tả SIFT \cite{cia_SIFT} các tác giả sẽ thu được một vector đặc trưng về khối hình, hình dáng của bông hoa có trong ảnh.				 
 																																											
 		\begin{figure}[h]
 			\centering
@@ -500,12 +497,12 @@
 																																											
 		\textbf{Vector đặc trưng về kết cấu trên vùng tiền cảnh sử dụng SIFT \cite{cia_SIFT}}	
 																																		
-		Các mô tả SIFT \cite{cia_SIFT} được tính toán tại các điểm trên một lưới thông thường với khoảng cách M điểm ảnh trên vùng hoa tiền cảnh. Tại mỗi điểm lưới, các bộ mô tả được tính toán trên các cửa sổ hỗ trợ hình tròn với bán kính R điểm ảnh kết quả thu được là một vectơ 128 chiều.						 
+		Các mô tả SIFT \cite{cia_SIFT} được tính toán trên toàn bộ vùng hoa còn lại sau khi tách tiền cảnh. Kết quả thu được là một vector thuộc tính về kết cấu tiền cảnh gồm 128 chiều.						 
 																																		
 																																										 
 		\textbf{Vector đặc trưng kết cấu trên vùng ranh giới sử dụng SIFT \cite{cia_SIFT}}												
 																																		
-		Ranh giới của ảnh sau bước tiền xử lý tách phông nền cho ta ranh giới của hoa. Sau đó lấy mẫu các mô tả SIFT \cite{cia_SIFT} trên đường viền của bông hoa, chúng ta có thể nhấn mạnh hơn đến hình dạng cục bộ của đường biên. Sử dụng các cửa sổ hình tròn bán kính R điểm ảnh và bước nhảy S điểm ảnh dọc theo đường biên của bông hoa kết quả thu được cũng thu được một vector 128 chiều.							
+		Ranh giới của ảnh sau bước tiền xử lý tách phông nền cho ta ranh giới của hoa. Sau đó lấy mẫu các mô tả SIFT \cite{cia_SIFT} trên đường viền của bông hoa, chúng ta có thể nhấn mạnh hơn đến hình dạng cục bộ của đường biên. Kết quả thu được cũng thu được một vector thuộc tính kết cấu nhưng trên vùng ranh giới bao gồm 128 chiều.							
 																																												
 																																		
 		\textbf{Vector đặc trưng về màu sắc}
@@ -514,19 +511,20 @@
 																														
 		\textbf{Vector đặc trưng về hoa văn}
 		
-		Một số hoa có hoa văn đặc trưng trên cánh hoa của chúng. Những họa tiết này có thể đặc biệt hơn, chẳng hạn các sọc của hoa păng xê, các ô vuông ở hoa đầu rắn, hoặc các chấm nhỏ ở hoa ly hổ
+		Một số hoa có hoa văn đặc trưng trên cánh hoa của chúng. Những họa tiết này có thể đặc biệt hơn, chẳng hạn các sọc của hoa păng xê, các ô vuông ở hoa đầu rắn, hoặc các chấm nhỏ ở hoa ly hổ các tác giả đã sử dụng bộ lọc MR8 \cite{cia_MR8} để trích xuất thuộc tính về hoa văn của bông hoa trong ảnh.
 		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.5]{anh_hoa_cau_truc}
-			\caption{Hình ảnh trong nghiên cứu \cite{cia-Nilsback06} về các loài hoa có hình dáng tương tự nhau}
+			\caption{Hình ảnh trong nghiên cứu \cite{cia-Nilsback06} về các loài hoa đặc trưng về hoa văn}
 			\label{fig:anh_hoa_khacnhau_hoavan}
 		\end{figure}
 																												
-		Sử dụng bộ lọc MR8 \cite{cia_MR8} với vùng hỗ trợ hình vuông có kích thước từ 3 đến 19 pixel.Kết quả trên cho thấy độ chính xác phân loại thay đổi theo số lượng cụm cho các kích thước bộ lọc khác nhau.
+		
 																												
 		\textbf{Vector đặc trưng về phân bố tổng thể}
 																												
-		Sử dụng phương pháp HOG \cite{cia_HOG} , tương tự như các tính năng SIFT \cite{cia_SIFT}, ngoại trừ việc chúng sử dụng tương phản cục bộ chồng chéo đã chuẩn hóa giữa các ô trong một lưới. Tuy nhiên, thay vì được áp dụng cho các vùng cục bộ (bán kính R trong trường hợp SIFT\cite{cia_SIFT}), HOG được áp dụng ở đây trên toàn bộ vùng hoa. Theo cách này, sẽ mô tả được sự phân bố không gian toàn cầu của hoa.
+		Sử dụng phương pháp HOG \cite{cia_HOG}, tương tự như các tính năng SIFT \cite{cia_SIFT}. Tuy nhiên, thay vì được áp dụng cho 
+		các vùng cục bộ (bán kính R trong trường hợp SIFT\cite{cia_SIFT}), HOG được áp dụng ở đây trên toàn bộ vùng hoa. Theo cách này, sẽ mô tả được sự phân bố không gian tổng thể của bông hoa trong bức ảnh.
 																												
 		% \newpage
 		\subsection{Nghiên cứu về trích xuất thông tin từ ảnh gốc}
@@ -559,21 +557,19 @@
 																								
 		\textbf{Mạng tích chập VGG19 \cite{cia_vgg19}}
 																										
-		Dựa trên các công trình nghiên cứu trước đó thì vào năm 2015 có một nghiên cứu \cite{cia_vgg19} đề xuất sử dụng mạng tích chập ConvNet \cite{cia_vgg19} gồm rất nhiều lớp để có thể đáp ứng được khả năng phân loại trên diện rộng. Trong nghiên cứu này, các tác giả đã điều tra ảnh hưởng của độ sâu mạng tích chập đến độ chính xác trong việc nhận dạng hình ảnh với quy mô lớn.  
-																										
-		Qua đánh giá kỹ lưỡng các mạng đã được tăng độ sâu bằng cách sử dụng kiến trúc với các bộ lọc tích chập rất nhỏ (3 x 3), cho thấy có thể đạt được sự cải thiện đáng kể về cấu hình trước khi nâng độ sâu lên 16 đến 19 lớp.
-																										
+		Dựa trên các công trình nghiên cứu trước đó thì vào năm 2015 có một nghiên cứu \cite{cia_vgg19} đề xuất sử dụng mạng tích chập ConvNet \cite{cia_vgg19} gồm rất nhiều lớp để có thể đáp ứng được khả năng phân loại trên diện rộng. Trong nghiên cứu này, các tác giả đã điều tra ảnh hưởng của độ sâu mạng tích chập đến độ chính xác trong việc nhận dạng hình ảnh với quy mô lớn.												
+		Qua đánh giá kỹ lưỡng các mạng đã được tăng độ sâu các tác gỉa đã đạt được sự cải thiện đáng kể khi nâng độ sâu lên 16 đến 19 lớp.
 		Trong hình \ref{fig:vgg19_image} là mô tả cách cài đặt cho mạng ConvNet. Kết quả thu được là một vector thuộc tính 4096 chiều.
 				\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.7]{vgg19_image}
-			\caption{Hình ảnh mô tả kiến trúc của VGG19 \cite{cia_vgg19} lấy từ trang www.researchgate.net}
+			\caption{Hình ảnh mô tả kiến trúc của VGG19 \cite{cia_vgg19} lấy từ trang researchgate.net}
 			\label{fig:vgg19_image}
 		\end{figure}				\newpage
 																								
 		
 																										
-		\subsection{Nghiên cứu về nhận dạng ảnh dựa trên tìm kiếm \cite{image_retrival} }
+		\subsection{Nghiên cứu về nhận dạng ảnh dựa trên tìm kiếm}
 																										
 		Phương pháp nhận dạng ảnh dựa trên tìm kiếm \cite{image_retrival} có chút khác biệt so với bài toán phân loại hình ảnh, đầu vào của bài toán vẫn là một hình ảnh và nhiệm vụ đặt ra ở đây là phải sắp xếp, hoặc tìm kiếm, những hình ảnh có liên quan trong cơ sở dữ liệu. Có hai hướng tiếp cận trong bài toán truy hồi là theo hướng khái niệm và hướng nội dung.
 																								
@@ -698,7 +694,7 @@
 		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.81]{mohinhchung}
-			\caption{mô hình chung của hệ thống}
+			\caption{Mô hình chung của hệ thống}
 			\label{fig:mohinhchung}
 		\end{figure}
 														
@@ -712,7 +708,7 @@
 		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.4]{tach_phong_nen}
-			\caption{ví dụ về bước tách phông nền}
+			\caption{Ví dụ về bước tách phông nền}
 			\label{fig:tach_phong_nen}
 		\end{figure}
 														
@@ -764,13 +760,14 @@
 			\item Độ tương tự được tính ở đây là cosin giữa hai vector.
 			%       Ở trên đây là công thức tính độ tương tự giữa góc giữa hai hình ảnh A và B trong đó A và B lần lượt là các vector thuộc tính của 2 hình ảnh A và B. 
 			      			      			      			      			      			
-			%       ||A|| là độ dài của vector thuộc tính A\\
-			%       ||B|| là độ dài vector thuộc tính B\\
-			%       Độ tương tự sẽ lớn nhất khi vector A trùng vector B và công thức trên cho kết quả bằng 1.
-			%       \begin{figure}[h]
-			%       	\centering
-			%       	\includegraphics[scale=0.8]{cosin}
-			%       \end{figure}
+			       
+			       \begin{figure}[h]
+			       	\centering
+			       	\includegraphics[scale=0.6]{cosin}
+			       \end{figure}
+			      ||A|| là độ dài của vector thuộc tính A\\
+			       ||B|| là độ dài vector thuộc tính B\\
+			       Độ tương tự sẽ lớn nhất khi vector A trùng vector B và công thức trên cho kết quả bằng 1.
 			\item Trong mỗi loài hoa được nhận ra ảnh nào có độ tương tự lớn nhất với ảnh cần tìm thì ta sẽ hiển thị ra ảnh đó, để người dùng có thể dễ dàng xác nhận được đúng loài hoa cần tìm.
 		\end{itemize}	
 														
@@ -985,8 +982,7 @@
 		\end{itemize}
 						
 		\section{Xây dựng và cài đặt ứng dụng trên thiết bị di động}
-		Sử dụng bộ thư viện React Native để xây dựng ứng dụng di động do Facebook phát hành. 
-		Ưu điểm của React Native để chỉ cần viết một lần duy nhất có thể xây dựng được ứng dụng cho cả iOS và Android.
+		Sử dụng bộ thư viện React Native để xây dựng ứng dụng di động. Ưu điểm của React Native để chỉ cần viết một lần duy nhất có thể xây dựng được ứng dụng cho cả iOS và Android.
 		
 		Ứng dụng sẽ không đơn thuần chỉ có một chức năng tìm kiếm bằng hình ảnh, ngoài ra nó còn có thể được coi là một diễn đàn
 		nơi mọi người có thể chụp lại các bức ảnh về các loài hoa đẹp. Đôi khi ứng dụng sẽ gặp phải các loài hoa chưa được thêm vào bộ dữ liệu thì sẽ được mọi người trên diễn đàn trợ giúp.
@@ -995,7 +991,7 @@
 						
 		\begin{figure}[h]
 			\centering
-			\includegraphics[scale=1]{usecase}
+			\includegraphics[scale=0.8]{usecase}
 			\caption{Hình ảnh về các ca sử dụng của ứng dụng}
 			\label{fig:usecase}
 		\end{figure}
@@ -1132,6 +1128,11 @@
 			\includegraphics[scale=1]{f1score}
 		\end{figure}
 		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=1]{percision}
+		\end{figure}
+		
 		Cài đặt tính toán độ đo F1-score trên python.
 		\begin{lstlisting}
 		def calcu_f1_score(actual_1, actual_0):
@@ -1160,12 +1161,12 @@
 
 		\begin{table}[h]
 			\centering
-			\caption{Bảng danh sách các loài hoa phổ biến ở Việt Nam có trong bộ dữ liệu ảnh chụp thực tế}
+			\caption{Bảng kết quả độ chính xác phân loại hoa}
 			\label{tbl:table ket qua phan loai hoa}
 			\begin{tabular}{|c|l|c|}
 				\hline
 				\textbf{STT} & \textbf{Thuật toán phân loại} & \textbf{Độ chính xác phân loại (\%)} \\ \hline
-				1            & KNN                                 & 60.35                                        \\ \hline
+				1            & KNN                                 & 61.45                                        \\ \hline
 				2            & Random-forest                       & 65.51                                        \\ \hline
 				3            & SVM                                 & 78.53                                        \\ \hline
 			\end{tabular}
@@ -1191,9 +1192,7 @@
 		distances, indices = knn.kneighbors(img_feature_vector)
 		\end{lstlisting}
 				
-		Ở đây độ chính xác của thuật toán được đo bằng kết quả của láng giềng gần nhất (K=1). Tôi có sử dụng phương pháp ảnh mở rộng (image augmentation) cụ thể là lật trái, phải, soi vào gương. Như vậy từ một ảnh ban đầu sau phương pháp này ta sẽ có được 4 ảnh.
-						
-		Độ chính xác của thuật toán được kiểm tra trên bộ data\_04 như bảng dưới.
+		Ở đây độ chính xác của thuật toán được đo bằng kết quả của láng giềng gần nhất (K=1). Tôi có sử dụng phương pháp tăng cường ảnh (image augmentation) cụ thể là lật trái, phải, soi vào gương. Như vậy từ một ảnh ban đầu sau phương pháp này ta sẽ có được 4 ảnh. Độ chính xác của thuật toán được kiểm tra trên bộ data\_04 như bảng \ref{tbl:table ket qua cua KNN}.
 				
 		\begin{table}[h]
 			\centering
@@ -1316,8 +1315,9 @@
 
 		
 		\section{Kết quả sử dụng bộ test ảnh chụp thực tế}
-		Từ các kết quả khi sử dụng hàm LinearSVC tôi nhận thấy mô hình có số thứ tự  23 cho ta kết quả khả quan nhất 78,53\%. Tôi có sử dụng chính mô hình này để thử nghiệm trên bộ dữ liệu ảnh chụp thực tế gồm 18 loài hoa phổ biến tại Việt Nam và thu được các kết quả như bảng phía dưới. Tôi nhận thấy kết quả ở đây là 70\% vẫn còn tương đối thấp.
-		Vì vậy tôi thử nghiệm thêm 2 mô hình mới dựa trên các phương pháp tăng cường ảnh và thông số cho thuật toán vẫn giống với mô hình 23 nhưng thay đổi đi bộ dữ liệu huấn luyện.
+		Từ các kết quả khi sử dụng hàm LinearSVC tôi nhận thấy mô hình có số thứ tự  23 cho ta kết quả khả quan nhất 78,53\%. Tôi có sử dụng chính mô hình này để thử nghiệm trên bộ dữ liệu ảnh chụp thực tế gồm 18 loài hoa phổ biến tại Việt Nam và thu được các kết quả như bảng \ref{tbl:bang phan loai anh thuc te}. Tôi nhận thấy kết quả ở đây là 70\% vẫn còn tương đối thấp.
+		
+		Vì vậy tôi thử nghiệm thêm 2 mô hình mới dựa trên các phương pháp tăng cường ảnh và thông số cho thuật toán vẫn giống với mô hình 23 nhưng thay đổi đi bộ dữ liệu huấn luyện trong bảng \ref{tbl:bang cac mo hinh moi}.
 		Với mô hình 27 mỗi loài hoa tôi lấy một nửa số lượng ảnh ra và gọi bộ dữ liệu đó là data\_03. Với mô hình 28 tôi lấy toàn bộ số lượng ảnh trong bộ dữ liệu kiểm tra để huấn luyện.
 		
 		\begin{table}
@@ -1461,7 +1461,7 @@
 			\end{tabular}
 		\end{table}\newpage
 
-		\subsection{Thảo luận về các kết quả}
+		\section{Thảo luận về các kết quả}
 		
 		\textbf{Những trường hợp đã được giải quyết}
 		
