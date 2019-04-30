@@ -30,6 +30,8 @@
 \usetikzlibrary{calc}
 \setlength{\parindent}{10mm}
 \renewcommand{\baselinestretch}{1.3}
+% \renewcommand{\thesection}{}
+
 \graphicspath{{images/}}
 
 %%% The following lines add Chapter or Appendix in front of the number
@@ -227,11 +229,11 @@
 			\textbf{\large ABSTRACT}
 		\end{center}
 																																																																										
-		This thesis presents an recognition flowers’ names application based on the input images on the mobile platform. This application is built with three main machine learning models: (1) a binary classification model to detect whether there is any flower in the image, (2) a model that recognizes the name of the flower in the image, and (3) an algorithm which searches for results of similar images. 
+		This thesis presents an recognition flowers’ names application based on the input images on the mobile platform. This application is built with three main machine learning models: (1) a binary classification model to detect flower in an image, (2) a model that recognizes the name of the flower in an image, and (3) an algorithm that judges the similarity of visual content of an image in each class.
 																																																																										
-		The application is developed using a method of reusing a Deep learning models trained by another large data set to extract feature of image. Experimental comparison of this approach with traditional feature extraction method points to the feasibility and savings of reusing model of research problems in the field of image processing.
+		The application is developed using a method of reusing a deep learning model trained by another large dataset to extract features of an image. The comparison between this approach and the traditional feature extraction methods points to the feasibility and savings of reusing model of research problems in the field of image processing.
 																																																																										
-		The main contributions of this thesis are: (1) Translating names, the growth characteristics as well as planting methods of 102 flower species in Oxford-102 data set, (2) Developing an application on mobile platform, and (3) Developing a flowers detection models with 98.6\% accuracy and an recognition model of flowers with 78.56\% accuracy.
+		The main contributions of this thesis are: (1) Translating names and the growth characteristics of plants as well as methods of planting of 102 flower species in Oxford-102 dataset, (2) Developing an application on mobile platform, and (3) Developing a flowers detection model with 98.6\% accuracy and an recognition model of flowers' names with 78.56\% accuracy.
 																																																																										
 																																																																										
 		\noindent \textit{\textbf{Keywords:} flower detection, flower recognition, mobile application}
@@ -295,7 +297,7 @@
 		\chapter{Mở đầu}
 		\label{chap:intro}
 																																																																										
-		\section*{Bối cảnh nghiên cứu}
+		\section{Bối cảnh nghiên cứu}
 																																																																										
 		Cùng với sự phát triển của công nghệ nói chung cũng như sự phát triển của các thiết bị di động nói riêng ta có thể nhận thấy một điều rằng ngày nay điện thoại di động là một dụng cụ luôn đi kèm mỗi người mỗi khi đi ra khỏi nhà, đi làm hay đi chơi. 
 		
@@ -1418,7 +1420,7 @@
 		\end{tabular}
 		\end{table}\newpage
 		
-		\section{Kết quả tìm kiếm với Google Image}
+		\section{So sánh kết quả tìm kiếm dùng Google Image}
 		Một thống kê khác cũng khá quan trọng đó chính là tìm kiếm bộ ảnh chụp thực tế với chính Google Image.
 		Kết quả tìm kiếm được thể hiện trong bảng \ref{tbl:bang so sanh voi tim kiem googleimage}
 		
@@ -1506,67 +1508,71 @@
 			\section*{Tiếng Anh}
 																																																																																																
 			\bibitem{cia-Nilsback06} 
-			Maria-Elena Nilsback and Andrew Zisserman. A Visual Vocabulary for Flower Classification Robotics Research Group, Department of Engineering Science University of Oxford, United Kingdom													
+			Nilsback, M-E., and Andrew Zisserman. "A visual vocabulary for flower classification." \textit{2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR'06)}. Vol. 2. IEEE, 2006.													
 																																																																																																			
 			\bibitem{cia-Nilsback08}
-			Maria-Elena Nilsback and Andrew Zisserman. Automated flower classification over a large number of classes Visual Geometry Group, Department of Engineering Science University of Oxford, United Kingdom
+			Nilsback, Maria-Elena, and Andrew Zisserman. "Automated flower classification over a large number of classes." 2008 Sixth Indian \textit{Conference on Computer Vision, Graphics \& Image Processing}. IEEE, 2008.
 																																																																																																
 			\bibitem{cia-ONE}
-			Lingxi Xie , Richang Hong , Bo Zhang , and Qi Tian. Image Classification and Retrieval are ONE
+			Xie, Lingxi, et al. "Image classification and retrieval are one." \textit{Proceedings of the 5th ACM on International Conference on Multimedia Retrieval}. Acm, 2015.
 																																																																																																
 			\bibitem{cia-CNNFeatures off-the-shelf}
-			CNN Features off-the-shelf: an Astounding Baseline for Recognition Ali Sharif Razavian Hossein Azizpour Josephine Sullivan Stefan Carlsson CVAP, KTH (Royal Institute of Technology) Stockholm, Sweden
+			Sharif Razavian, Ali, et al. "CNN features off-the-shelf: an astounding baseline for recognition." \textit{Proceedings of the IEEE conference on computer vision and pattern recognition workshops}. 2014.
 																																																																																															
 			\bibitem{cia_5}
-			M. Varma and D. Ray. Learning the discriminative power invariance trade-off. In Proc. ICCV, 2007.
+			Varma, Manik, and Debajyoti Ray. "Learning the discriminative power-invariance trade-off."  \textit{2007 IEEE 11th International Conference on Computer Vision}. IEEE, 2007.
 																																																																																										
 			\bibitem{cia_SIFT}
-			D. Lowe. Distinctive image features from scale-invariant keypoints. IJCV, 60(2):91–110, 2004.
+			Lowe, David G. "Distinctive image features from scale-invariant keypoints." \textit{International journal of computer vision} 60.2 (2004): 91-110.
 																																																																																																		
 			\bibitem{cia_HOG}
-			N. Dalal and B. Triggs. Histogram of oriented gradients for human detection. In Proc. CVPR, volume 2, pages 886–893, 2005.
+			Dalal, Navneet, and Bill Triggs. "Histograms of oriented gradients for human detection." \textit{international Conference on computer vision \& Pattern Recognition} (CVPR'05). Vol. 1. IEEE Computer Society, 2005.
 																																																																																																
 			\bibitem{cia_MRF}
-			Y. Y. Boykov and M. P. Jolly. Interactive graph cuts for optimal boundary and region segmentation of objects in N-D images. In Proc. ICCV, volume 2, pages 105– 112, 2001.
+			Boykov, Yuri Y., and M-P. Jolly. "Interactive graph cuts for optimal boundary \& region segmentation of objects in ND images." \textit{Proceedings eighth IEEE international conference on computer vision}. ICCV 2001. Vol. 1. IEEE, 2001.
 																																																																																															
 			\bibitem{cia_temp1}
-			Luca Bertelli. Tianli Yu. Diem Vu Burak Gokturk. Kernelized Structural SVM Learning for Supervised Object Segmentation. Google, Inc.
+			Bertelli, Luca, et al. "Kernelized structural SVM learning for supervised object segmentation." \textit{CVPR} 2011. IEEE, 2011.
 																																																		
 			\bibitem{cia_image_augmentation_1}
-			L. Perez and J. Wang. The effectiveness of data augmentation in image classification using deep learning. arXiv preprint arXiv:1712.04621, 2017
+			Perez, Luis, and Jason Wang. "The effectiveness of data augmentation in image classification using deep learning." \textit{arXiv preprint arXiv}:1712.04621 (2017).
 																																																																																										
 			\bibitem{cia_MR8}
-			M. Varma and A. Zisserman. Cla	ssifying images of materials: Achieving viewpoint and illumination independence. In Proc. ECCV, volume 3, pages 255–271.Springer-Verlag, May 2002.	
+			Varma, Manik, and Andrew Zisserman. "Classifying images of materials: Achieving viewpoint and illumination independence." \textit{European Conference on Computer Vision}. Springer, Berlin, Heidelberg, 2002.	
 																																																																																													
 			\bibitem{cia_object_propo_1}
-			B. Alexe, T. Deselaers, and V. Ferrari. Measuring the Objectness of Image Windows. TPAMI, 2012.
+			Alexe, Bogdan, Thomas Deselaers, and Vittorio Ferrari. "Measuring the objectness of image windows." \textit{IEEE transactions on pattern analysis and machine intelligence} 34.11 (2012): 2189-2202.
 																																																																																										
 			\bibitem{cia_object_propo_2}
-			J. Uijlings, K. van de Sande, T. Gevers, and A. Smeulders. Selective Search for Object Recognition. IJCV, 2013.
+			Uijlings, J. R., Van De Sande, K. E., Gevers, T., \& Smeulders, A. W. (2013). Selective search for object recognition. \textit{International journal of computer vision}, 104(2), 154-171.
 																																																																																										
 			\bibitem{cia_object_propo_3}
-			M. Cheng, Z. Zhang, W. Lin, and P. Torr. BING: Binarized Normed Gradients for Objectness Estimation at 300fps. CVPR, 2014.
+			Cheng, M. M., Zhang, Z., Lin, W. Y., \& Torr, P. (2014). BING: Binarized normed gradients for objectness estimation at 300fps. In \textit{Proceedings of the IEEE conference on computer vision and pattern recognition} (pp. 3286-3293).
 																																																																																										
 			\bibitem{cia_vgg19}
-			K. Simonyan and A. Zisserman. Very deep convolutional networks for large-scale image recognition. In ICLR, 2015.
-																																																																																										
+			Simonyan, Karen, and Andrew Zisserman. "Very deep convolutional networks for large-scale image recognition." \textit{arXiv preprint arXiv}:1409.1556 (2014).
+																																						
 			\bibitem{cia_image_augmentation_2}
-			Marcus D. Bloice, Christof Stocker, Andreas Holzinger. Augmentor: An Image Augmentation Library for Machine Learning. Medical University of Graz Graz, Austria
+			Bloice, Marcus D., Christof Stocker, and Andreas Holzinger. "Augmentor: an image augmentation library for machine learning." \textit{arXiv preprint arXiv}:1708.04680 (2017).
 			
-			\bibitem{cia_imagenet}Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li and Li Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database.Dept. of Computer Science, Princeton University, USA
+			\bibitem{cia_imagenet}
+			Deng, Jia, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei. "Imagenet: A large-scale hierarchical image database." In 2009 \textit{IEEE conference on computer vision and pattern recognition}, pp. 248-255. Ieee, 2009.
 			
 			\bibitem{cia_kaggle_flower}
-			Ram Longman. Embedded CycleGAN for Shape-Agnostic Imageto-Image Translation.																																					
+			Longman, Ram. "Embedded CycleGAN for Shape-Agnostic Image-to-Image Translation." (2018).																																					
 			
 			\bibitem{cia_ImageNet ILSVRC 2013}
-			Olga Russakovsky* · Jia Deng* · Hao Su · Jonathan Krause · Sanjeev Satheesh · Sean Ma · Zhiheng Huang · Andrej Karpathy ·
-			Aditya Khosla · Michael Bernstein · Alexander C. Berg · Li Fei-Fei. 
-			ImageNet Large Scale Visual Recognition Challenge																		
+			Russakovsky, Olga, Jia Deng, Hao Su, Jonathan Krause, Sanjeev Satheesh, Sean Ma, Zhiheng Huang et al. "Imagenet large scale visual recognition challenge." \textit{International journal of computer vision} 115, no. 3 (2015): 211-252.																		
 			
-			\bibitem{image_retrival}Y Rui, TS Huang, SF Chang. Image retrieval: Current techniques, promising directions, and open issues																																																																	
-		
+			\bibitem{image_retrival}
+			Retrieval, Image. "Current Techniques, Promising Directions, and Open Issues Yong Rui and Thomas S." \textit{Huang Department of ECE \& Beckman Institute, University of Illinois.}		
+			
+			
 			\bibitem{cia_f1_score}
-			Marina Sokolova, Guy Lapalme. A systematic analysis of performance measures for classification tasks.
+			Sokolova, Marina, and Guy Lapalme. "A systematic analysis of performance measures for classification tasks." \textit{Information Processing \& Management} 45.4 (2009): 427-437.
+			
+		
+		
 		\end{thebibliography}
 																																																																										
 \end{document}
