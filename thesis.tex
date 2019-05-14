@@ -20,6 +20,7 @@
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{chngcntr}
 \usepackage{nameref}
+%\usepackage[hidelinks]{hyperref}
 %\usepackage[font=bf]{caption}
 %\counterwithin{figure}{chapter}
 
@@ -243,7 +244,7 @@
 		\begin{center}
 			\textbf{\large LỜI CAM ĐOAN}
 		\end{center}
-		Tôi xin cam đoan toàn bộ khóa luận về ứng dụng phát triển phần mềm nhận dạng hoa trên thiết bị di động bao gồm mô hình nhận diện, phần mềm di động và phần mềm hệ thống là do tôi thực hiện dưới sự hướng dẫn của TS. Nguyễn Thị Ngọc Diệp và PGS. TS. Nguyễn Việt Hà. Tất cả các công trình nghiên cứu, bài báo, khóa luận, tài liệu của các tác giả khác được tôi sử dụng trong khóa luận này đều được trích dẫn tường mình về tác giả và đều có trong danh sách tài liệu tham khảo.
+		Tôi xin cam đoan toàn bộ khóa luận về ứng dụng phát triển phần mềm nhận dạng hoa trên thiết bị di động bao gồm mô hình nhận diện, phần mềm di động và phần mềm hệ thống là do tôi thực hiện dưới sự hướng dẫn của TS. Nguyễn Thị Ngọc Diệp và PGS. TS. Nguyễn Việt Hà. Tất cả các công trình nghiên cứu, bài báo, khóa luận, tài liệu của các tác giả khác được tôi sử dụng trong khóa luận này đều được trích dẫn tường minh và đều có trong danh sách tài liệu tham khảo.
 																																																																										
 		\begin{flushright}
 			\begin{varwidth}{\linewidth}\centering
@@ -269,19 +270,24 @@
 		\begin{table}[h]
 			\centering
 			\begin{tabular}{lll}
-				\textbf{MRF}       & Markov Random Field                               \\[0.3cm]
-				\textbf{HSV}       & Hue, saturation, value                            \\[0.3cm]
-				\textbf{SIFT}      & scale-invariant feature transform                 \\[0.3cm]
-				\textbf{HOG}       & Histogram of Gradients                            \\[0.3cm]
-				\textbf{SVM}       & Support-vector machine                            \\[0.3cm]
-				\textbf{SVC}       & Support Vector Classification                     \\[0.3cm]
-				\textbf{LinearSVC} & Linear Support Vector Classification              \\[0.3cm]
-				\textbf{KNN}       & K-Nearest Neighbour                               \\[0.3cm]
-				\textbf{RGB}       & Red, green, blue                                  \\[0.3cm]
 				\textbf{CNN}       & Convolutional Neural Network                      \\[0.3cm]
 				\textbf{CNNaug}    & Convolutional Neural Network + image augmentation \\[0.3cm]
+				\textbf{HOG}       & Histogram of Gradients                            \\[0.3cm]
+				\textbf{HSV}       & Hue, saturation, value                            \\[0.3cm]
+				\textbf{KNN}       & K-Nearest Neighbour                               \\[0.3cm]
+				\textbf{LinearSVC} & Linear Support Vector Classification              \\[0.3cm]
+				\textbf{MRF}       & Markov Random Field                               \\[0.3cm]
 				\textbf{ONE}       & Online Nearest-neighbor Estimation                \\[0.3cm]
 				\textbf{PCA}       & Principal Component Analysis                      \\[0.3cm]
+				\textbf{RGB}       & Red, green, blue                                  \\[0.3cm]
+				\textbf{SIFT}      & scale-invariant feature transform                 \\[0.3cm]
+				\textbf{SVC}       & Support Vector Classification                     \\[0.3cm]
+				\textbf{SVM}       & Support-vector machine                            \\[0.3cm]
+				
+				
+				
+				
+				
 																																																																																																																																																						
 			\end{tabular}
 		\end{table}
@@ -363,7 +369,7 @@
 			\item \texttt{Bước 2:} Trích xuất các thuộc tính từ ảnh và chuyển thành các vector thuộc tính.
 			\item \texttt{Bước 3:} Sử dụng các thuật toán phân loại để phát hiện có hoa trong ảnh hay không.
 			\item \texttt{Bước 4:}	Nếu phát hiện thấy hoa trong ảnh thì sử dụng vector thuộc tính đó để nhận dạng tên loài hoa.
-			\item \texttt{Bước 5}: Tính toán độ tương tự của các ảnh trong tưng loài hoa để đưa ra các ảnh phù hợp nhất cho kết quả.
+			\item \texttt{Bước 5}: Tính toán độ tương tự của các ảnh trong từng loài hoa để đưa ra các ảnh phù hợp nhất cho kết quả.
 		\end{itemize}
 																																																																		
 		% Qua sự tham khảo các phương pháp trích xuất truyền thống như đã được công bố trong các nghiên cứu \cite{cia-Nilsback06} \cite{cia-Nilsback08} và các nghiên cứu gần đây sử dụng mạng tích chập VGG19 \cite{cia_vgg19}. Phương pháp để giải quyết bài toán sẽ diễn ra với các bước sau:
@@ -560,7 +566,7 @@
 		\textbf{Mạng tích chập VGG19 \cite{cia_vgg19}}
 																										
 		Dựa trên các công trình nghiên cứu trước đó thì vào năm 2015 có một nghiên cứu \cite{cia_vgg19} đề xuất sử dụng mạng tích chập ConvNet \cite{cia_vgg19} gồm rất nhiều lớp để có thể đáp ứng được khả năng phân loại trên diện rộng. Trong nghiên cứu này, các tác giả đã điều tra ảnh hưởng của độ sâu mạng tích chập đến độ chính xác trong việc nhận dạng hình ảnh với quy mô lớn.												
-		Qua đánh giá kỹ lưỡng các mạng đã được tăng độ sâu các tác gỉa đã đạt được sự cải thiện đáng kể khi nâng độ sâu lên 16 đến 19 lớp.
+		Qua đánh giá kỹ lưỡng các mạng đã được tăng độ sâu các tác giả đã đạt được sự cải thiện đáng kể khi nâng độ sâu lên 16 đến 19 lớp.
 		Trong hình \ref{fig:vgg19_image} là mô tả cách cài đặt cho mạng ConvNet. Kết quả thu được là một vector thuộc tính 4096 chiều.
 				\begin{figure}[h]
 			\centering
@@ -1317,10 +1323,9 @@
 
 		
 		\section{Kết quả sử dụng bộ test ảnh chụp thực tế}
-		Từ các kết quả khi sử dụng hàm LinearSVC tôi nhận thấy mô hình có số thứ tự  23 cho ta kết quả khả quan nhất 78,53\%. Tôi có sử dụng chính mô hình này để thử nghiệm trên bộ dữ liệu ảnh chụp thực tế gồm 18 loài hoa phổ biến tại Việt Nam và thu được các kết quả như bảng \ref{tbl:bang phan loai anh thuc te}. Tôi nhận thấy kết quả ở đây là 70\% vẫn còn tương đối thấp.
+		Từ các kết quả khi sử dụng hàm LinearSVC tôi nhận thấy mô hình có số thứ tự  23 cho ta kết quả khả quan nhất 78,53\%. Tôi có sử dụng chính mô hình này để thử nghiệm trên bộ dữ liệu ảnh chụp thực tế gồm 18 loài hoa phổ biến tại Việt Nam và thu được các kết quả như bảng \ref{tbl:bang phan loai anh thuc te}. 
 		
-		Vì vậy tôi thử nghiệm thêm 2 mô hình mới dựa trên các phương pháp tăng cường ảnh và thông số cho thuật toán vẫn giống với mô hình 23 nhưng thay đổi đi bộ dữ liệu huấn luyện trong bảng \ref{tbl:bang cac mo hinh moi}.
-		Với mô hình 27 mỗi loài hoa tôi lấy một nửa số lượng ảnh ra và gọi bộ dữ liệu đó là data\_03. Với mô hình 28 tôi lấy toàn bộ số lượng ảnh trong bộ dữ liệu kiểm tra để huấn luyện.
+		Tôi nhận thấy kết quả khi sử dụng mô hình 23 để phân loại các loài hoa trong bộ dữ liệu ảnh chụp thực tế chỉ là 70\% vẫn còn tương đối thấp. Vì vậy tôi thử nghiệm thêm 2 mô hình mới dựa trên các phương pháp tăng cường ảnh và thông số cho thuật toán vẫn giống với mô hình 23 nhưng thay đổi đi bộ dữ liệu huấn luyện. Các mô hình mới được nêu ra trong bảng \ref{tbl:bang cac mo hinh moi}. 
 		
 		\begin{table}
 			\centering
@@ -1370,7 +1375,7 @@
 			độ chính xác phân loại sẽ tăng lên, ở đây đa phần các loài hoa khi chuyển từ mô hình 23 sang mô hình 27 và 28 đều có độ 
 			chính xác tăng lên.
 			\item Các loài hoa có độ chính xác rất cao có thể thấy là hoa đại và hoa thiên điểu.
-			\item Các loài hoa dễ bị nhầm lần với nhau nhất là hoa sen bị nhầm thành hoa súng, hoa cúc bị nhầm thành hoa hướng dương và ngược lại. Hoa cúc vạn thọ dễ bị nhầm thành hoa cúc.
+			\item Các loài hoa dễ bị nhầm lần với nhau nhất là hoa sen bị nhầm thành hoa súng, hoa cúc bị nhầm thành hoa hướng dương và ngược lại. Hoa cúc vạn thọ dễ bị nhầm thành hoa cẩm chướng vàng.
 			\item Kết quả độ chính xác trung bình trên các loài hoa đạt được cao nhất với mô hình 28 đó là 78.88\%.
 		\end{itemize}\newpage
 
@@ -1387,7 +1392,7 @@
 		Nhận xét: 		
 		\begin{itemize}
 			\item Với ứng dụng PlantFinder ta có thể thấy sự khác biệt trong các kết quả độ chính xác, một số loài có độ chính xác rất cao vì dụ như hoa đỗ quyên hoặc hoa trà nhưng đa phần là không nhận dạng được các loài hoa như hoa bìm bìm hoặc hoa cẩm chướng. Có thể bộ dữ liệu về hoa của ứng dụng chưa đầy đủ và thiếu các loài hoa phổ biến tại Việt Nam.
-			\item Với ứng dụng PlantNet các loài hoa đa phần có đô chính xác tốt, có thể kể đến như hoa bìm bìm hoặc hoa hồng đặc trưng và có đô chính xác 100\%.
+			\item Với ứng dụng PlantNet các loài hoa đa phần có độ chính xác tốt, có thể kể đến như hoa bìm bìm hoặc hoa hồng đặc trưng và có độ chính xác 100\%.
 		\end{itemize}
 
 		\begin{table}
@@ -1434,7 +1439,7 @@
 
 		\begin{table}
 			\centering
-			\caption{Bảng so sánh kết quả tìm kiếm bằng GoogleImage}
+			\caption{Bảng so sánh kết quả tìm kiếm bằng Google Image}
 						\label{tbl:bang so sanh voi tim kiem googleimage}
 
 			\begin{tabular}{|l|c|c|c|c|}
