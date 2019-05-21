@@ -701,7 +701,7 @@
 
 		\begin{figure}[h]
 			\centering
-			\includegraphics[scale=0.81]{mohinhchung}
+			\includegraphics[scale=0.3]{mohinhchung2}
 			\caption{Mô hình chung của hệ thống}
 			\label{fig:mohinhchung}
 		\end{figure}
@@ -712,11 +712,24 @@
 			\item \texttt{Đầu vào:} Ảnh do người dùng chụp gửi lên hệ thống
 			\item \texttt{Đầu ra:} Ảnh đã được tách phông nền.
 		\end{itemize}
+		
+		
+\begin{lstlisting}
+		import cv2
+		
+        img = cv2.imread(img_path)
+        mask = np.zeros(img.shape[:2],np.uint8)
+        bgdModel = np.zeros((1,65),np.float64)
+        fgdModel = np.zeros((1,65),np.float64)
+        rect = (start_width,start_height,rect_width,rect_height)
+        cv2.grabCut(img,mask,rect,bgdModel,fgdModel,5,cv2.GC_INIT_WITH_RECT)
+        mask2 = np.where((mask==2)|(mask==0),0,1).astype('uint8')
+		\end{lstlisting}
 														
 		\begin{figure}[h]
 			\centering
-			\includegraphics[scale=0.4]{tach_phong_nen}
-			\caption{Ví dụ về bước tách phông nền}
+			\includegraphics[scale=0.3]{tach_phong_nen}
+			\caption{Ví dụ về bước tách phông nền}		
 			\label{fig:tach_phong_nen}
 		\end{figure}
 														
@@ -809,16 +822,38 @@
 		\begin{itemize}
 			\item Sử dụng phương pháp máy vector hỗ trợ để xây dựng mô hình phân loại nhị phân (binary classification). 
 			\item Lấy bộ dữ liệu huấn luyện để huấn luyện cho mô hình, và sử dụng bộ xác nhận để đo độ chính xác phân loại của mô hình.
-			\item kết quả thu được là mô hình phát hiện hoa.		      			      			      
+			\item kết quả thu được là mô hình phát hiện hoa.	
+
+		\begin{lstlisting}
+	from sklearn.svm import SVC
+		
+    clf = SVC(degree=2, gamma='auto',kernel='linear',)
+    clf.fit(X_train, Y_train)
+    		\end{lstlisting}
+				      			      			      
 		\end{itemize}
 										
 		\textbf{Bước 4: Kiểm tra mô hình.} 
+		
 		\begin{itemize}
 			\item Sử dụng bộ kiểm tra để đo độ chính xác của mô hình vừa nhận được.
+			
+		\begin{lstlisting}
+    model = cPickle.load(open(model_name, 'rb'))
+    
+    actual_1 = model.predict(flower_validation)
+    actual_0 = model.predict(non_flower_validation)
+    		\end{lstlisting}
+	
 		\end{itemize}
+		
+		
+    		
+    		
+		
 										
 										
-		\newpage
+		
 		\subsection{Mô hình phân loại hoa}
 		\begin{figure}[h]
 			\centering
@@ -830,6 +865,15 @@
 		\textbf{Bước 1: Chuẩn bị dữ liệu.} 
 		\begin{itemize}
 			\item Ở đây sử dụng bộ dữ liệu Oxford-102 \cite{cia-Nilsback06}, nhận thấy số lượng ảnh để huấn luyện cho mô hình chỉ là 10 ảnh mỗi loài hoa, như vậy là hơi ít ảnh vì vậy tôi đã gộp bộ huấn luyện và bộ xác nhận lại thành bộ huấn luyện mở rộng. Sau đó sử dụng phương pháp tăng cường ảnh \cite{cia_image_augmentation_2} để tăng số lượng ảnh huấn luyện.
+\begin{lstlisting}
+from keras.preprocessing.image import ImageDataGenerator
+
+ datagen = ImageDataGenerator(
+ 	vertical_flip=True,
+	 horizontal_flip=True,
+ )
+    		\end{lstlisting}			
+			
 			\item Chia bộ dữ liệu theo cách mới đó là cắt một nửa bộ kiểm tra (mỗi loài hoa trong tập kiểm tra chia một nửa cho bộ huấn luyện nửa còn lại để kiểm tra).
 			\item Các ảnh trong bộ dữ liệu đều là ảnh chụp cận cảnh bông hoa vì vậy ở mô hình này không cần đến bước tách phông nền.
 		\end{itemize}
@@ -852,6 +896,106 @@
 		\begin{itemize}
 			\item Sử dụng bộ kiểm tra để đo độ chính xác của mô hình vừa nhận được.
 		\end{itemize}
+		
+		
+
+		\section{Xây dựng và cài đặt ứng dụng trên thiết bị di động}
+		Sử dụng bộ thư viện React Native để xây dựng ứng dụng di động. Ưu điểm của React Native để chỉ cần viết một lần duy nhất có thể xây dựng được ứng dụng cho cả iOS và Android.
+		
+		Ứng dụng sẽ không đơn thuần chỉ có một chức năng tìm kiếm bằng hình ảnh, ngoài ra nó còn có thể được coi là một diễn đàn
+		nơi mọi người có thể chụp lại các bức ảnh về các loài hoa đẹp. Đôi khi ứng dụng sẽ gặp phải các loài hoa chưa được thêm vào bộ dữ liệu thì sẽ được mọi người trên diễn đàn trợ giúp.
+
+		\subsection{Mô tả sơ đồ các ca sử dụng chính của ứng dụng}
+						
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.8]{usecase}
+			\caption{Hình ảnh về các ca sử dụng của ứng dụng}
+			\label{fig:usecase}
+		\end{figure}
+		Các ca sử dụng của ứng dụng là :
+				
+		\begin{itemize}
+			\item Tìm kiếm, nhận dạng loài hoa bằng ảnh: Đầu vào sẽ là một bức ảnh, có thể chụp trực tiếp từ máy ảnh của thiết bị di động
+			hoặc đơn thuần chỉ là một tệp dữ liệu ảnh trong thiết bị di động. Và đầu ra nếu bức ảnh đó không có hoa là thông báo không tìm thấy hoa trong ảnh,
+			hoặc nếu trong ảnh xuất hiện hoa thì là danh sách tên 5 loài hoa phù hợp nhất.
+			\item Tìm kiếm loài hoa bằng tên: Đầu vào sẽ là một chuỗi ký tự nhập từ bàn phím của thiết bị di động, từ khóa sẽ được tìm kiếm và trả về kết quả dựa vào độ trùng khớp với các dữ liệu về tên tiếng Việt, tên tiếng Anh hoặc
+			tên latin.
+			\item Xem đặc điểm chi tiết của loài hoa đó.
+			\item Xem lại các ảnh của bản thân.
+			\item Xem các ảnh của mọi người tải lên hệ thống.
+			\item Bình luận và phản hồi về các ảnh.
+		\end{itemize}
+				
+		\subsection{Giao diện của ứng dụng trên điện thoại di động}
+		Ở giao diện tra cứu có các chức năng như là tìm kiếm trực tiếp bằng ảnh chụp hoặc tìm kiếm bằng tên loài hoa. Các chức năng cài đặt cho máy ảnh như tắt/bật đèn chớp, xoay máy ảnh ra phía trước, hoặc sử dụng ảnh có sẵn trong album để tìm kiếm.
+				
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.2]{app_search1}
+			\includegraphics[scale=0.2]{app_search2}
+			\caption{Hình ảnh giao diện tra cứu và kết quả tra cứu của ứng dụng.}
+			\label{fig:app_search}
+		\end{figure}\newpage
+				
+		Ở giao diện kết quả tìm kiếm bằng ảnh ta sẽ nhìn thấy danh sách các loài hoa phù hợp nhất với ảnh chụp đó. Các loài hoa sẽ được sắp xếp theo thứ tự từ trên xuống dưới tương ứng với mức độ phù hợp cao đến thấp. Danh sách tên các loài hoa hiển thị bao gồm tên tiếng Việt, tên tiếng Anh, tên tiếng Latin và đi kèm với đó là hình ảnh đại diện là hình ảnh của loài hoa trong cơ sở dữ liệu có độ tương tự cao nhất với ảnh tìm kiếm. \newpage
+				
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.2]{app_no_flower1}
+			\includegraphics[scale=0.2]{app_no_flower2}
+			\caption{Hình ảnh giao diện của ứng dụng khi không phát hiện hoa trong ảnh.}
+			\label{fig:app_no_flower}
+		\end{figure}
+		Khi chụp một bức ảnh không có hoa thì kết quả trả về sẽ là không tìm thấy hoa, ở trong hình \ref{fig:app_no_flower} tôi có lấy ví dụ là ứng dụng chụp máy tính của tôi trong hình bên trái và bên phải là ảnh chụp kết quả trả về.\newpage
+				
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.2]{app_search_name2}
+			\includegraphics[scale=0.2]{app_search_name}
+			\caption{Hình ảnh giao diện tìm kiếm bằng tên.}
+			\label{fig:app_search_name}
+		\end{figure}
+		Chức năng tìm kiếm bằng tên sẽ tìm kiếm theo từ khóa mà bạn nhập vào. 
+		Từ khóa bạn nhập có thể là tên tiếng Việt, tiếng Anh, hoặc tên tiếng Latin.
+		Ở đây khi bạn chưa nhập bất kỳ từ khóa nào thì ứng dụng sẽ gợi ý danh sách các loài hoa được mọi người tìm kiếm nhiều nhất.
+		\newpage
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.18]{app_detail1}
+			\includegraphics[scale=0.18]{app_detail2}
+			\caption{Hình ảnh giao diện chi tiết loài hoa.}
+			\label{fig:app_detail}
+		\end{figure}
+		
+		Ở giao diện chi tiết loài hoa tôi có nêu ra tên của loài hoa đó theo tiếng Việt, tiếng Anh, và tên Latin. Đồng thời phía dưới đó chính là đặc điểm của loài hoa đó bao gồm:Đặc điểm chung của loài hoa, đặc điểm sinh trưởng, cách trồng và chăm sóc cây, và ý nghĩa của tên loài hoa.
+		Bên cạnh chức năng xem chi tiết đặc điểm của loài hoa là chức năng xem các ảnh tương tự của loài hoa, các ảnh ở đây là các ảnh trong bộ cơ sở dữ liệu.
+		\newpage
+		
+		Chức năng xem lại các ảnh của bản thân, bạn có thể nhìn thấy danh sách các ảnh mà mình đã từng tìm kiếm. Đồng thời cũng có thể nhìn thấy danh sách các ảnh mà do người dùng khác tìm kiếm. 
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.2]{app_profile}
+			\includegraphics[scale=0.2]{app_social}
+			\caption{Hình ảnh giao diện xem lại các ảnh của bản thân và mọi người.}
+			\label{fig:app_profile}
+		\end{figure}
+				
+		\newpage
+		Mỗi bức ảnh khi bấm vào ta đều có thể để lại bình luận về loài hoa đó cũng như chia sẻ kinh nghiệm bản thân về cách trồng cũng như chăm sóc loài hoa cho mọi người cùng biết. Đồng thời đưa ra kết quả nhận dạng loài hoa mà ứng dụng đã phản hồi.
+	
+				
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.2]{app_comment}
+			\includegraphics[scale=0.2]{app_comment2}
+			\caption{Hình ảnh giao diện xem nhận xét của mọi người.}
+			\label{fig:app_comment}
+		\end{figure}\newpage		
+		
+		
 											
 		% chương 4				
 		\chapter{Kết quả thực nghiệm}
@@ -989,101 +1133,6 @@
 			\item Bộ thư viện keras trên python.
 		\end{itemize}
 						
-		\section{Xây dựng và cài đặt ứng dụng trên thiết bị di động}
-		Sử dụng bộ thư viện React Native để xây dựng ứng dụng di động. Ưu điểm của React Native để chỉ cần viết một lần duy nhất có thể xây dựng được ứng dụng cho cả iOS và Android.
-		
-		Ứng dụng sẽ không đơn thuần chỉ có một chức năng tìm kiếm bằng hình ảnh, ngoài ra nó còn có thể được coi là một diễn đàn
-		nơi mọi người có thể chụp lại các bức ảnh về các loài hoa đẹp. Đôi khi ứng dụng sẽ gặp phải các loài hoa chưa được thêm vào bộ dữ liệu thì sẽ được mọi người trên diễn đàn trợ giúp.
-
-		\subsection{Mô tả sơ đồ các ca sử dụng chính của ứng dụng}
-						
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.8]{usecase}
-			\caption{Hình ảnh về các ca sử dụng của ứng dụng}
-			\label{fig:usecase}
-		\end{figure}
-		Các ca sử dụng của ứng dụng là :
-				
-		\begin{itemize}
-			\item Tìm kiếm, nhận dạng loài hoa bằng ảnh: Đầu vào sẽ là một bức ảnh, có thể chụp trực tiếp từ máy ảnh của thiết bị di động
-			hoặc đơn thuần chỉ là một tệp dữ liệu ảnh trong thiết bị di động. Và đầu ra nếu bức ảnh đó không có hoa là thông báo không tìm thấy hoa trong ảnh,
-			hoặc nếu trong ảnh xuất hiện hoa thì là danh sách tên 5 loài hoa phù hợp nhất.
-			\item Tìm kiếm loài hoa bằng tên: Đầu vào sẽ là một chuỗi ký tự nhập từ bàn phím của thiết bị di động, từ khóa sẽ được tìm kiếm và trả về kết quả dựa vào độ trùng khớp với các dữ liệu về tên tiếng Việt, tên tiếng Anh hoặc
-			tên latin.
-			\item Xem đặc điểm chi tiết của loài hoa đó.
-			\item Xem lại các ảnh của bản thân.
-			\item Xem các ảnh của mọi người tải lên hệ thống.
-			\item Bình luận và phản hồi về các ảnh.
-		\end{itemize}
-				
-		\subsection{Giao diện của ứng dụng trên điện thoại di động}
-		Ở giao diện tra cứu có các chức năng như là tìm kiếm trực tiếp bằng ảnh chụp hoặc tìm kiếm bằng tên loài hoa. Các chức năng cài đặt cho máy ảnh như tắt/bật đèn chớp, xoay máy ảnh ra phía trước, hoặc sử dụng ảnh có sẵn trong album để tìm kiếm.
-				
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.2]{app_search1}
-			\includegraphics[scale=0.2]{app_search2}
-			\caption{Hình ảnh giao diện tra cứu và kết quả tra cứu của ứng dụng.}
-			\label{fig:app_search}
-		\end{figure}\newpage
-				
-		Ở giao diện kết quả tìm kiếm bằng ảnh ta sẽ nhìn thấy danh sách các loài hoa phù hợp nhất với ảnh chụp đó. Các loài hoa sẽ được sắp xếp theo thứ tự từ trên xuống dưới tương ứng với mức độ phù hợp cao đến thấp. Danh sách tên các loài hoa hiển thị bao gồm tên tiếng Việt, tên tiếng Anh, tên tiếng Latin và đi kèm với đó là hình ảnh đại diện là hình ảnh của loài hoa trong cơ sở dữ liệu có độ tương tự cao nhất với ảnh tìm kiếm. \newpage
-				
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.2]{app_no_flower1}
-			\includegraphics[scale=0.2]{app_no_flower2}
-			\caption{Hình ảnh giao diện của ứng dụng khi không phát hiện hoa trong ảnh.}
-			\label{fig:app_no_flower}
-		\end{figure}
-		Khi chụp một bức ảnh không có hoa thì kết quả trả về sẽ là không tìm thấy hoa, ở trong hình \ref{fig:app_no_flower} tôi có lấy ví dụ là ứng dụng chụp máy tính của tôi trong hình bên trái và bên phải là ảnh chụp kết quả trả về.\newpage
-				
-		
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.2]{app_search_name2}
-			\includegraphics[scale=0.2]{app_search_name}
-			\caption{Hình ảnh giao diện tìm kiếm bằng tên.}
-			\label{fig:app_search_name}
-		\end{figure}
-		Chức năng tìm kiếm bằng tên sẽ tìm kiếm theo từ khóa mà bạn nhập vào. 
-		Từ khóa bạn nhập có thể là tên tiếng Việt, tiếng Anh, hoặc tên tiếng Latin.
-		Ở đây khi bạn chưa nhập bất kỳ từ khóa nào thì ứng dụng sẽ gợi ý danh sách các loài hoa được mọi người tìm kiếm nhiều nhất.
-		\newpage
-		
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.18]{app_detail1}
-			\includegraphics[scale=0.18]{app_detail2}
-			\caption{Hình ảnh giao diện chi tiết loài hoa.}
-			\label{fig:app_detail}
-		\end{figure}
-		
-		Ở giao diện chi tiết loài hoa tôi có nêu ra tên của loài hoa đó theo tiếng Việt, tiếng Anh, và tên Latin. Đồng thời phía dưới đó chính là đặc điểm của loài hoa đó bao gồm:Đặc điểm chung của loài hoa, đặc điểm sinh trưởng, cách trồng và chăm sóc cây, và ý nghĩa của tên loài hoa.
-		Bên cạnh chức năng xem chi tiết đặc điểm của loài hoa là chức năng xem các ảnh tương tự của loài hoa, các ảnh ở đây là các ảnh trong bộ cơ sở dữ liệu.
-		\newpage
-		
-		Chức năng xem lại các ảnh của bản thân, bạn có thể nhìn thấy danh sách các ảnh mà mình đã từng tìm kiếm. Đồng thời cũng có thể nhìn thấy danh sách các ảnh mà do người dùng khác tìm kiếm. 
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.2]{app_profile}
-			\includegraphics[scale=0.2]{app_social}
-			\caption{Hình ảnh giao diện xem lại các ảnh của bản thân và mọi người.}
-			\label{fig:app_profile}
-		\end{figure}
-				
-		\newpage
-		Mỗi bức ảnh khi bấm vào ta đều có thể để lại bình luận về loài hoa đó cũng như chia sẻ kinh nghiệm bản thân về cách trồng cũng như chăm sóc loài hoa cho mọi người cùng biết. Đồng thời đưa ra kết quả nhận dạng loài hoa mà ứng dụng đã phản hồi.
-	
-				
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.2]{app_comment}
-			\includegraphics[scale=0.2]{app_comment2}
-			\caption{Hình ảnh giao diện xem nhận xét của mọi người.}
-			\label{fig:app_comment}
-		\end{figure}\newpage
 				
 		
 		\section{Kết quả của mô hình phát hiện hoa.}
@@ -1474,6 +1523,13 @@
 		
 		Những trường hợp đã nhận dạng chính xác và cho kết quả nhận dạng là chính xác là những ảnh chụp đơn bông hoa, ảnh được chụp cận cảnh, không quá tối, chủ thể hoa không quá bé và ảnh có độ nhiễu thấp.
 		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.3]{vidunhandangdung}
+			\caption{Hình ảnh ví dụ trường hợp nhận dạng đúng}
+			\label{fig:app_comment}
+		\end{figure}
+		
 		\textbf{Những trường hợp còn nhận dạng sai}
 		Trong mô hình phân loại còn gặp phải khá nhiều trường hợp phân loại sai do một số nguyên nhân sau đây.
 		\begin{itemize}
@@ -1484,14 +1540,8 @@
 
 		\begin{figure}[h]
 			\centering
-			\includegraphics[scale=0.2]{anhlanghoa}
-			\caption{Hình ảnh ví dụ về nhiều loài hoa trong một ảnh trên trang web vnphoto.net}
-			\label{fig:app_comment}
-		\end{figure}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.25]{anh_hoa_giay}
-			\caption{Hình ảnh ví dụ về hoa mọc thành chùm trên trang web vnphoto.net.}
+			\includegraphics[scale=0.18]{vidunhandangsai}
+			\caption{Hình ảnh ví dụ về trường hợp nhận dạng sai}
 			\label{fig:app_comment}
 		\end{figure}
 
